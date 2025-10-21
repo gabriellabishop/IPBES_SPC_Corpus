@@ -1,0 +1,41 @@
+"1":
+  - '"Future" AND'
+  - '"project*" OR'
+  - '"predict*" OR'
+  - '"forecast*" OR'
+  - '"scenario"'
+
+"2":
+  - '"Future" AND'
+  - '"pathway*" OR'
+  - '"narrative*" OR'
+  - '"storyline*" OR'
+  - '"foresight" OR'
+  - '"vision*" OR'
+  - '"horizon scan*" OR'
+  - '"trajectory" OR'
+  - '"imagination*"'
+
+"3":
+  - '"Future-proof*" OR'
+  - '"anticipat*" OR'
+  - '"forward-look*" OR'
+  - '"futures thinking" OR'
+  - '"future-oriented" OR'
+  - '"prospective" OR'
+  - '"plausible future*" OR'
+  - '"scenario planning"'
+
+"4":
+  - '"Foresight*" OR'
+  - '"backcasting" OR'
+  - '"simulat*" OR'
+  - '"delphi method*" OR'
+  - '"storytelling" OR'
+  - '"environmental scan*" OR'
+  - '"trend*" OR'
+  - '"megatrend*"'
+
+"5":
+  - '"Model*" AND'
+  - '"scenari*"'

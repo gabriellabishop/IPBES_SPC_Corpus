@@ -1,0 +1,25 @@
+Set 1 (Drivers):
+  - '"drivers of change" OR'
+  - '"biodiversity driver" OR'
+  - '"social-ecological driver" OR'
+  - '"technological driver" OR'
+  - '"perennial driver" OR'
+  - '"emerging driver" OR'
+  - '"cascading driver"'
+
+Set 2 (Methods for drivers):
+  - '"Integrated assessment" OR'
+  - '"land-use change model" OR'
+  - '"Scenario model*" OR'
+  - '"Social-ecological model*" OR'
+  - '"agent-based model*" OR'
+  - '"telecoupled systems model*" OR'
+  - '"hybrid model*" OR'
+  - '"participatory model*" OR'
+  - '"data-driven foresight model*"'
+
+Set 3 (Gaps):
+  - '"value-based driver" OR'
+  - '"compound driver" OR'
+  - '"interacting driver" OR'
+  - '"distant driver"'

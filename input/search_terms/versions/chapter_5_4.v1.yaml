@@ -1,0 +1,26 @@
+Set 1 (Interactions):
+  - '"Synerg*" OR'
+  - '"tradeoff*" OR'
+  - '"trade-off*" OR'
+  - '"nexus" OR'
+  - '"win-win" OR'
+  - '"cross-sectoral interaction*" OR'
+  - '"co-benefit*"'
+
+Set 2 (Response options):
+  - '"Integrated planning" OR'
+  - '"multifunctional*" OR'
+  - '"nature-based solution*" OR'
+  - '"adaptive governance" OR'
+  - '"cross-sectoral governance"'
+
+Set 3:
+  - '"Spatial" OR'
+  - '"temporal" OR'
+  - '"thematic" OR'
+  - '"cross-scale" AND'
+  - '"Synerg*" OR'
+  - '"tradeoff*" OR'
+  - '"trade-off*" OR'
+  - '"nexus" OR'
+  - '"win-win"'

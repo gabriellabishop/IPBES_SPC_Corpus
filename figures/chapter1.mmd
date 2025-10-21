@@ -1,0 +1,22 @@
+flowchart LR
+    Start([SPC Corpus]) --> Ch1["chapter_1.v1.yaml<br/>Level 2 refinements"]
+    click Ch1 "./input/search_terms/chapter_1.v1.yaml" "Open chapter_1.v1.yaml"
+
+    subgraph Chapter1Sets["Chapter 1 thematic searches"]
+        direction TB
+        C1_1["Set 1:<br/>land/spatial planning<br/>+ biodiversity goals<br/>+ societal needs/values"]
+        C1_2["Set 2:<br/>adaptive/scenario planning<br/>+ monitoring/feedback"]
+        C1_3["Set 3:<br/>evidence & precaution<br/>+ ILK knowledge base"]
+        C1_4["Set 4:<br/>multilevel/transparent governance<br/>+ customary coherence"]
+        C1_5["Set 5:<br/>participatory planning<br/>+ co-design / engagement"]
+        C1_6["Set 6:<br/>equity / rights / tenure<br/>+ justice outcomes"]
+        C1_7["Set 7:<br/>connectivity (land-sea/cross-scale)<br/>+ nexus & climate links"]
+    end
+
+    Ch1 --> C1_1
+    Ch1 --> C1_2
+    Ch1 --> C1_3
+    Ch1 --> C1_4
+    Ch1 --> C1_5
+    Ch1 --> C1_6
+    Ch1 --> C1_7

@@ -1,0 +1,23 @@
+flowchart LR
+    Start([SPC Corpus]) --> Ch4["chapter_4.yaml<br/>Level 2 refinements"]
+    click Ch4 "./input/search_terms/chapter_4.yaml" "Open chapter_4.yaml"
+
+    subgraph Chapter4Sets["Chapter 4 searches"]
+        direction TB
+        C4_1["Set 1:<br/>Connectivity review articles"]
+        C4_2["Set 2:<br/>Connectivity benefits vs risks<br/>+ ecosystem services"]
+        C4_3["Set 3:<br/>Structural vs functional connectivity"]
+        C4_4["Set 4:<br/>Connectivity modelling toolkits"]
+        C4_5["Set 5:<br/>Connectivity indicators & metrics"]
+        C4_6["Set 6:<br/>Policy & governance integration"]
+        C4_7["Set 7:<br/>Multilevel / transboundary governance<br/>+ IPLC inclusion + land tenure"]
+        C4_8["Set 8:<br/>Movement ecology<br/>(dispersal / migration / permeability)"]
+    end
+    Ch4 --> C4_1
+    Ch4 --> C4_2
+    Ch4 --> C4_3
+    Ch4 --> C4_4
+    Ch4 --> C4_5
+    Ch4 --> C4_6
+    Ch4 --> C4_7
+    Ch4 --> C4_8
