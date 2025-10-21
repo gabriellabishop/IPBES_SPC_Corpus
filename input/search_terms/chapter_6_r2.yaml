@@ -1,1 +1,10 @@
-/Volumes/Documents/GitHub/IPBES_SPC_Corpus/input/search_terms/versions/chapter_6_r2.v1.yaml
+R2:
+  - '"case stud*" OR'
+  - '"case" OR'
+  - '"study area*" OR'
+  - '"example*" OR'
+  - '"evaluation" OR'
+  - '"concrete" OR'
+  - '"empirical", OR'
+  - '"practical" OR'
+  - '"initiative*"'

@@ -1,1 +1,49 @@
-/Volumes/Documents/GitHub/IPBES_SPC_Corpus/input/search_terms/versions/chapter_1.v1.yaml
+"1":
+  - '"land use planning" OR'
+  - '"spatial planning" AND'
+  - '"biodiversity goals" OR'
+  - '"ecosystem services" AND'
+  - '"societal needs" OR'
+  - '"value-based planning"'
+
+"2":
+  - '"adaptive planning" OR'
+  - '"scenario planning" OR'
+  - '"transformative pathways" AND'
+  - '"monitoring" OR'
+  - '"feedback mechanisms"'
+
+"3":
+  - '"evidence-based planning" OR'
+  - '"precautionary principle" AND'
+  - '"Indigenous knowledge" OR'
+  - '"local knowledge" OR'
+  - '"ILK"'
+
+"4":
+  - '"multi-level governance" OR'
+  - '"transparent governance" OR'
+  - '"accountable planning" AND'
+  - '"customary governance" OR'
+  - '"policy coherence"'
+
+"5":
+  - '"participatory planning" OR'
+  - '"community engagement" AND'
+  - '"co-design" OR'
+  - '"stakeholder participation"'
+
+"6":
+  - '"equity" OR'
+  - '"rights-based approaches" OR'
+  - '"land tenure" AND'
+  - '"indigenous rights" OR'
+  - '"fairness" OR'
+  - '"just outcomes"'
+
+"7":
+  - '"ecological connectivity" OR'
+  - '"land-sea connectivity" OR'
+  - '"cross-scale planning" AND'
+  - '"nexus interdependencies" OR'
+  - '"climate-biodiversity linkages"'
