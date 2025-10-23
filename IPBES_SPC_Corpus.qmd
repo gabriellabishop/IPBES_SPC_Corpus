@@ -60,7 +60,11 @@ params:
 
     search_terms: !expr >-
       list(
-        spc_corpus =  yaml::read_yaml(file.path("input", "search_terms", "spc_corpus.v5.yaml"))
+        spc_corpus =  yaml::read_yaml(file.path("input", "search_terms", "spc_corpus.v5.yaml")),
+        chapter_1 = yaml::read_yaml(file.path("input", "search_terms", "chapter_1.v1.yaml")),
+        chapter_3 = yaml::read_yaml(file.path("input", "search_terms", "chapter_3.v1.yaml")),
+        chapter_4 = yaml::read_yaml(file.path("input", "search_terms", "chapter_4.v1.yaml")),
+        chapter_6 = yaml::read_yaml(file.path("input", "search_terms", "chapter_6.v1.yaml"))
       )
 
     publication_date: !expr >-
@@ -84,6 +88,12 @@ params:
 
     keyworks: !expr file.path(".", "spc_corpus", "output", "key_works")
     corpus: !expr file.path(".", "spc_corpus", "output", "corpus")
+    chapter_1: !expr file.path(".", "spc_corpus", "output", "chapter_1")
+    chapter_2: !expr file.path(".", "spc_corpus", "output", "chapter_2")
+    chapter_3: !expr file.path(".", "spc_corpus", "output", "chapter_3")
+    chapter_4: !expr file.path(".", "spc_corpus", "output", "chapter_4")
+    chapter_5: !expr file.path(".", "spc_corpus", "output", "chapter_5")
+    chapter_6: !expr file.path(".", "spc_corpus", "output", "chapter_6")
 
     # pages_dir: !expr file.path(".", "spc_corpus", "output", "pages")
 
@@ -180,6 +190,12 @@ lapply(
 dir.create(params$output_dir, recursive = TRUE, showWarnings = FALSE)
 dir.create(params$keyworks, recursive = TRUE, showWarnings = FALSE)
 dir.create(params$corpus, recursive = TRUE, showWarnings = FALSE)
+dir.create(params$chapter_1, recursive = TRUE, showWarnings = FALSE)
+dir.create(params$chapter_2, recursive = TRUE, showWarnings = FALSE)
+dir.create(params$chapter_3, recursive = TRUE, showWarnings = FALSE)
+dir.create(params$chapter_4, recursive = TRUE, showWarnings = FALSE)
+dir.create(params$chapter_5, recursive = TRUE, showWarnings = FALSE)
+dir.create(params$chapter_6, recursive = TRUE, showWarnings = FALSE)
 ```
 
 # Working Title
@@ -284,9 +300,9 @@ Will possibly be added later -->
 
 # Methods
 
+## SPC Corpus
 
-
-## Assess of Individual Terms in spc and nature search terms
+### Assess of Individual Terms in spc and nature search terms
 
 This assessment is done on the whole of the OpenAlex corpus and only filtered for types and *not* for the date range.
 
@@ -299,13 +315,13 @@ if (!file.exists(fn)) {
   result <- list(
     spc = assess_search_term_both(
       st = params$search_terms$spc_corpus$spc,
-      and_term = st(params$search_terms$spc_corpus$spc_corpus$nature),
+      and_term = stcompact(params$search_terms$spc_corpus$spc_corpus$nature),
       types = params$types_filter,
       verbose = TRUE
     ),
     nature = assess_search_term_both(
       st = params$search_terms$spc_corpus$nature,
-      and_term = st(params$search_terms$spc_corpus$spc_corpus$spc),
+      and_term = stcompact(params$search_terms$spc_corpus$spc_corpus$spc),
       types = params$types_filter,
       verbose = FALSE
     )
@@ -317,7 +333,7 @@ if (!file.exists(fn)) {
 
 
 
-## Get Key Paper
+### Get Key Paper
 
 Here we get key papers in a parquet database which is partitioned by:
 
@@ -515,7 +531,7 @@ if (!dir.exists(fn)) {
 }
 ```
 
-## Keypaper in Search Terms
+### Keypaper in Search Terms
 
 The in the previous step retrieved works are analysed here to get a table which shows where the key paper occur.
 
@@ -549,7 +565,7 @@ if (!file.exists(fn)) {
 ```
 
 
-## Get Numbers from OpenAlex of the Search Terms
+### Get Numbers from OpenAlex of the Search Terms
 
 These data is gathered from OpenAlex directly, not downloaded any works. The data is used to assess the quality of the TCA Corpus.
 
@@ -560,7 +576,7 @@ The query contains:
 
 The following counts are retrieved:
 
-### Overall hits
+#### Overall hits
 
 ```{r}
 #| label: get_st_hits
@@ -612,7 +628,7 @@ if (!file.exists(fn)) {
 }
 ```
 
-### Counts per Language
+#### Counts per Language
 
 ```{r}
 #| label: get_st_languages
@@ -677,7 +693,7 @@ if (!file.exists(fn)) {
 }
 ```
 
-### Counts per Publication Year
+#### Counts per Publication Year
 ```{r}
 #| label: get_st_years
 #| #|
@@ -743,6 +759,167 @@ if (!file.exists(fn)) {
 ```
 
 
+## Chapter 1
+
+```{r}
+#| label: get_st_hits_chapter_1
+
+
+# params$search_terms$chapter_1
+
+fn <- file.path(params$chapter_1, "st_hits.rds")
+if (!file.exists(fn)) {
+  spcc <- paste0("(", stcompact(params$search_terms$spc_corpus$spc), ") AND (", stcompact(params$search_terms$spc_corpus$nature), ")")
+  queries <- lapply(
+    params$search_terms$chapter_1,
+    function(s) {
+      openalexPro::pro_query(
+        title_and_abstract.search = paste0("(", spcc, ") AND (", stcompact(s), ")"),
+        type = params$types_filter,
+        from_publication_date = params$publication_date$from,
+        to_publication_date = params$publication_date$to
+      )
+    }
+  )
+
+  pbapply::pblapply(
+    queries,
+    function(query) {
+      query |>
+        openalexR::oa_request(
+          count_only = TRUE,
+          verbose = TRUE
+        ) |>
+        unlist()
+    }
+  ) |>
+    do.call(what = cbind) |>
+    t() |>
+    as.data.frame() |>
+    dplyr::select(count) |>
+    saveRDS(file = fn)
+}
+```
+
+## Chapter 3
+
+```{r}
+#| label: get_st_hits_chapter_3
+#| eval: false
+
+fn <- file.path(params$chapter_3, "st_hits.rds")
+if (!file.exists(fn)) {
+  spcc <- paste0("(", stcompact(params$search_terms$spc_corpus$spc), ") AND (", stcompact(params$search_terms$spc_corpus$nature), ")")
+  queries <- lapply(
+    params$search_terms$chapter_3,
+    function(s) {
+      openalexPro::pro_query(
+        title_and_abstract.search = paste0("(", spcc, ") AND (", stcompact(s), ")"),
+        type = params$types_filter,
+        from_publication_date = params$publication_date$from,
+        to_publication_date = params$publication_date$to
+      )
+    }
+  )
+
+  pbapply::pblapply(
+    queries,
+    function(query) {
+      query |>
+        openalexR::oa_request(
+          count_only = TRUE,
+          verbose = TRUE
+        ) |>
+        unlist()
+    }
+  ) |>
+    do.call(what = cbind) |>
+    t() |>
+    as.data.frame() |>
+    dplyr::select(count) |>
+    saveRDS(file = fn)
+}
+```
+
+## Chapter 4
+
+```{r}
+#| label: get_st_hits_chapter_4
+
+fn <- file.path(params$chapter_4, "st_hits.rds")
+if (!file.exists(fn)) {
+  spcc <- paste0("(", stcompact(params$search_terms$spc_corpus$spc), ") AND (", stcompact(params$search_terms$spc_corpus$nature), ")")
+  queries <- lapply(
+    params$search_terms$chapter_4,
+    function(s) {
+      openalexPro::pro_query(
+        title_and_abstract.search = paste0("(", spcc, ") AND (", stcompact(s), ")"),
+        type = params$types_filter,
+        from_publication_date = params$publication_date$from,
+        to_publication_date = params$publication_date$to
+      )
+    }
+  )
+
+  pbapply::pblapply(
+    queries,
+    function(query) {
+      query |>
+        openalexR::oa_request(
+          count_only = TRUE,
+          verbose = TRUE
+        ) |>
+        unlist()
+    }
+  ) |>
+    do.call(what = cbind) |>
+    t() |>
+    as.data.frame() |>
+    dplyr::select(count) |>
+    saveRDS(file = fn)
+}
+```
+
+## Chapter 6
+
+
+```{r}
+#| label: get_st_hits_chapter_6
+#| eval: false
+
+fn <- file.path(params$chapter_6, "st_hits.rds")
+if (!file.exists(fn)) {
+  spcc <- paste0("(", stcompact(params$search_terms$spc_corpus$spc), ") AND (", stcompact(params$search_terms$spc_corpus$nature), ")")
+  queries <- lapply(
+    params$search_terms$chapter_6,
+    function(s) {
+      openalexPro::pro_query(
+        title_and_abstract.search = paste0("(", spcc, ") AND (", stcompact(s), ")"),
+        type = params$types_filter,
+        from_publication_date = params$publication_date$from,
+        to_publication_date = params$publication_date$to
+      )
+    }
+  )
+
+  pbapply::pblapply(
+    queries,
+    function(query) {
+      query |>
+        openalexR::oa_request(
+          count_only = TRUE,
+          verbose = TRUE
+        ) |>
+        unlist()
+    }
+  ) |>
+    do.call(what = cbind) |>
+    t() |>
+    as.data.frame() |>
+    dplyr::select(count) |>
+    saveRDS(file = fn)
+}
+```
 
 
 # Results
@@ -960,4 +1137,50 @@ readRDS(file.path(params$corpus, "st_languages.rds")) |>
     legend.position = "bottom",
     panel.grid.minor = ggplot2::element_blank()
   )
+```
+
+## Chapter 1
+
+```{r}
+#| label: chapter_1_st_hits
+
+
+readRDS("spc_corpus/output/chapter_1/st_hits.rds") |> 
+  dplyr::arrange(count)
+```
+
+## Chapter 3
+
+Term 1 is to long
+
+```{r}
+#| label: chapter_3_st_hits
+
+params$search_terms$chapter_3 |> sapply(FUN = nchar) |> sapply(FUN = sum)
+
+# readRDS("spc_corpus/output/chapter_3/st_hits.rds") |> 
+#   dplyr::arrange(count)
+```
+
+## Chapter 4
+
+```{r}
+#| label: chapter_4_st_hits
+
+
+readRDS("spc_corpus/output/chapter_4/st_hits.rds") |> 
+  dplyr::arrange(count)
+```
+
+## Chapter 6
+
+Term 8 is to long
+
+```{r}
+#| label: chapter_6_st_hits
+
+params$search_terms$chapter_6 |> sapply(FUN = nchar) |> sapply(FUN = sum)
+
+# readRDS("spc_corpus/output/chapter_6/st_hits.rds") |> 
+#   dplyr::arrange(count)
 ```
