@@ -1,0 +1,29 @@
+"1":
+  - '"Adaptative management" OR'
+  - '"Adaptative governance" OR'
+  - '"Transformative adaptation" OR'
+  - '"Adaptive systems" OR'
+  - '"Adaptive foresight"'
+
+Uncertainty quantification:
+  - '"Model uncertainty" OR'
+  - '"data uncertainty" OR'
+  - '"decision-making under uncertainty" OR'
+  - '"planning uncertainty" OR'
+  - '"scenario uncertainty" OR'
+  - '"epistemic uncertainty" OR'
+  - '"ontological uncertainty"'
+
+"3":
+  - '"Tipping points" OR'
+  - '"Thresholds" OR'
+  - '"Planetary boundaries" OR'
+  - '"Nonlinear system dynamics" OR'
+  - '"Surprise"'
+
+"4":
+  - '"Cascading risk" OR'
+  - '"Risk management" OR'
+  - '"Environmental shocks" OR'
+  - '"Environmental risks" OR'
+  - '"Precautionary approach"'

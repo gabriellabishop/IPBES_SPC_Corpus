@@ -3,11 +3,11 @@ article,Scholarly journal articles and related periodical works,TRUE
 book,Monographs and other long-form published books,TRUE
 book-chapter,Chapters published within edited books or proceedings,TRUE
 dissertation,Doctoral or master level theses and dissertations,TRUE
+editorial,Editorials and editor introductions,TRUE
 preprint,Pre-publication manuscripts shared prior to peer review,TRUE
 report,"Technical, institutional, or policy reports",TRUE
 review,Narrative or systematic review articles,TRUE
 dataset,Published datasets and structured data releases,FALSE
-editorial,Editorials and editor introductions,FALSE
 erratum,Published corrections to previously released works,FALSE
 grant,Summaries or descriptions of grant-funded projects,FALSE
 letter,"Correspondence, commentaries, and short letters",FALSE
