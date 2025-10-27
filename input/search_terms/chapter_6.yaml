@@ -1,0 +1,133 @@
+# Chapter 6
+# chapter_6.yaml
+# v1
+
+Set 1:
+- '"institutional arrangements" OR'
+- '"governance structures" OR'
+- '"cross-sector coordination" OR'
+- '"multi-level governance" OR'
+- '"inter-agency collaboration" OR'
+- '"policy coherence" OR'
+- '"environmental governance" OR'
+- '"landscape governance" OR'
+- '"seascape governance" OR'
+- '"integrated landscape management"'
+
+Set 2:
+- '("political support" OR'
+- '"environmental leadership" OR'
+- '"ministerial alignment" OR'
+- '"strategic prioritization" OR'
+- '"national biodiversity strategy"'
+
+Set 3:
+- '"stakeholder engagement" OR'
+- participation OR'
+- '"co-design" OR'
+- '"co-production" OR'
+- '"community-based management" OR'
+- '"indigenous governance" OR'
+- '"traditional knowledge" OR'
+- '"Free Prior and Informed Consent" OR'
+- 'FPIC OR'
+- '"stakeholder workshops" OR'
+- '"stakeholder dialogues" OR'
+- '"public consultation"'
+
+Set 4:
+- '(collaboration OR'
+- trust OR'
+- partnership OR'
+- '"multi-stakeholder platform" OR'
+- coalition OR'
+- '"inter-organizational network" OR'
+- 'cooperation'
+
+Set 5:
+- '("biodiversity finance" OR'
+- '"blended finance" OR'
+- '"green finance" OR'
+- '"conservation trust funds" OR'
+- '"Payment of ecosystem services" OR'
+- '"natural capital accounting" OR'
+- '"biodiversity offsets")' 
+
+Set 6:
+- '("environmental law" OR'
+- 'legislation OR'
+- '"statutory framework" OR'
+- '"policy instruments" OR'
+- '"regulatory mechanisms" OR'
+- '"strategic environmental assessment" OR'
+- '"Environmental Impact Assessment"'
+
+Set 7:
+- '"institutional capacity" OR'
+- '"technical expertise" OR'
+- '"capacity building" OR'
+- 'training OR'
+- '"professional development" OR'
+- '"institutional strengthening" OR'
+- '"workforce development" OR'
+- 'education OR'
+- 'pipeline OR'
+- '"diversity and inclusion" OR'
+- '"gender inequality" OR'
+- '"girl''s education" OR'
+- '"Indigenous knowledge" OR'
+- '"generational knowledge" OR'
+- '"institutional memory")'
+
+Set 8.1:
+- '"species distribution maps" OR'
+- '(("land cover" OR "protected area") AND data) OR'
+- '"Indigenous knowledge" OR'
+- '"knowledge co-production" OR'
+- '"knowledge and data management" OR'
+- '"spatial data infrastructure" OR' 
+- '((CARE OR FAIR) AND principles) OR' 
+- '"open science" OR'
+- '"information delivery" OR'
+- '(data AND (standards OR stewardship OR "management plan" OR "sharing agreement" OR archive OR repository OR structure)) OR'
+- 'metadata OR' 
+- '(quality AND (assurance OR control))'
+
+Set 8.2: 
+- '"monitoring and evaluation" OR'
+- '"decision-support tools" OR'
+- '"ecological model" OR' 
+- '"scenario planning and analysis" OR' 
+- '("systematic conservation planning" AND ("and model" OR tools)) OR'
+- '"biodiversity targets" OR'
+- '"science communication" OR' 
+- '"science-practice gap" OR' 
+- '"participatory mapping and model" OR'
+- '"scenario narratives" OR' 
+- '"evidence bridge" OR'
+- '"boundary spanner and organization" OR'
+- '"early adopter" OR'
+
+
+Set 9:
+- '"spatial planning" OR'
+- '"landscape governance" OR'
+- '"territorial integration" OR'
+- '"land-use planning" OR'
+- '"ecological connectivity" OR'
+- '"ecological networks" OR'
+- '"ecological corridors" OR'
+- '"green infrastructure" OR'
+- '"nature-based Strategic spatial planning solutions" OR'
+- '"restoration planning" OR'
+- '"blue infrastructure" OR'
+- '"blue-green infrastructure" OR'
+- '"spatial decision-making" OR'
+- '"strategic spatial planning"'
+
+Set 10: 
+- '"adaptive management" OR'
+- '"feedback mechanisms" OR'
+- '"monitoring and learning" OR'
+- '"institutional innovation" OR'
+- '"continuous improvement"'

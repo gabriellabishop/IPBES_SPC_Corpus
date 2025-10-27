@@ -1,0 +1,43 @@
+# Chapter 3
+# chapter_3.yaml
+# v2 shortened
+
+Set 1:
+- '((protected OR conserved) AND areas) OR "OECM" OR "other effective area-based conservation measures" OR "ITT" OR "indigenous and traditional territories") AND'
+- '("NBSAP" OR (national AND ("Biodiversity Strategy" OR target)) OR "downscaling") AND'
+- '("case study" OR "best practice" OR "conservation planning" OR "spatial prioritization" OR "spatial planning") AND'
+- '("regional" OR "national" OR "subnational" OR "mountain" OR "marine" OR (Indigenous AND ("customary land" OR "protected areas")) OR transboundary)'
+
+Set 2:
+- '(ecological restoration" OR "ecosystem restoration" OR "habitat restoration" OR "forest landscape restoration" OR "FLR") AND'
+- '("marine restoration" OR "wetland restoration" OR "freshwater restoration" OR "grassland restoration" OR "agroecosystem restoration" OR "mountains ecosystem") AND'
+- '("inclusivity" OR "participation" OR "co-management" OR "Indigenous knowledge" OR "traditional ecological knowledge" OR "ILK" OR "local knowledge" OR "community-based restoration" OR "stakeholder engagement" OR "social equity" OR "justice" OR "gender inclusion")'
+
+Set 3:
+- '("restoration planning" OR "ecological restoration") AND'
+- '("ecosystem integrity" OR "ecological connectivity" OR "corridors" OR "migration pathways" OR "climate resilience" OR "participatory approaches")'
+
+Set 4:
+- '("spatial conservation planning" OR "landscape conservation planning" OR "conservation gap analysis" OR "systematic conservation planning" OR "ecoregion conservation" OR "transboundary conservation planning")'
+
+Set 5:
+- '("protected area planning" OR "protected area connectivity planning" OR "conservation priority areas" OR "marine protected area planning")'
+
+Set 6:
+- '("landscape connectivity and conservation" OR "species connectivity" OR "planning conservation network" OR "ecological connectivity planning" OR "conservation corridor planning" OR "network conservation planning" OR "marine conservation planning" OR "seascape conservation planning" OR "wetland conservation planning")'
+
+Set 7:
+- '("conservation planning" AND "ecosystem services")'
+
+Set 8:
+- '("participatory conservation mapping" OR "community conservation mapping" OR "participatory spatial planning")'
+
+Set 9:
+- '("conservation effectiveness" OR "protected area management effectiveness") AND'
+- '"spatial planning"'
+
+Set 10:
+- '"adaptive management" AND'
+- '("global change" OR "climate change" OR "land use change" OR "sea use change" OR "invasive species" OR "overexploitation" OR "pollution") AND'
+- '"spatial planning"'
+

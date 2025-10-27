@@ -1,0 +1,53 @@
+# Chapter 1
+# chapter_1.yaml
+# v1
+
+"Set 1":
+  - '"land use planning" OR'
+  - '"spatial planning" AND'
+  - '"biodiversity goals" OR'
+  - '"ecosystem services" AND'
+  - '"societal needs" OR'
+  - '"value-based planning"'
+
+"Set 2":
+  - '"adaptive planning" OR'
+  - '"scenario planning" OR'
+  - '"transformative pathways" AND'
+  - '"monitoring" OR'
+  - '"feedback mechanisms"'
+
+"Set 3":
+  - '"evidence-based planning" OR'
+  - '"precautionary principle" AND'
+  - '"Indigenous knowledge" OR'
+  - '"local knowledge" OR'
+  - '"ILK"'
+
+"Set 4":
+  - '"multi-level governance" OR'
+  - '"transparent governance" OR'
+  - '"accountable planning" AND'
+  - '"customary governance" OR'
+  - '"policy coherence"'
+
+"Set 5":
+  - '"participatory planning" OR'
+  - '"community engagement" AND'
+  - '"co-design" OR'
+  - '"stakeholder participation"'
+
+"Set 6":
+  - '"equity" OR'
+  - '"rights-based approaches" OR'
+  - '"land tenure" AND'
+  - '"indigenous rights" OR'
+  - '"fairness" OR'
+  - '"just outcomes"'
+
+"Set 7":
+  - '"ecological connectivity" OR'
+  - '"land-sea connectivity" OR'
+  - '"cross-scale planning" AND'
+  - '"nexus interdependencies" OR'
+  - '"climate-biodiversity linkages"'

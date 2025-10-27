@@ -1,0 +1,150 @@
+# Chapter 2 SDG
+# chapter_2_sdg.yaml
+# v1
+SDG 1 – No Poverty Keywords:
+  - '"poverty" OR'
+  - '"income inequality" OR'
+  - '"social protection" OR'
+  - '"livelihoods" OR'
+  - '"economic growth"'
+
+SDG 2 – Zero Hunger Keywords:
+  - '"food" OR'
+  - '"agricultur*" OR'
+  - '"*nutrition" OR'
+  - '"hunger" OR'
+  - '"farm*"'
+
+SDG 3 – Good Health and Well-being Keywords:
+  - '"health*" OR'
+  - '"mortality" OR'
+  - '"diseases" OR'
+  - '"pandemics" OR'
+  - '"well-being" OR'
+  - '"wellbeing"'
+
+SDG 4 – Quality Education Keywords:
+  - '"education" OR'
+  - '"literacy" OR'
+  - '"learning" OR'
+  - '"training" OR'
+  - '"teach*" OR'
+  - '"school*"'
+
+SDG 5 – Gender Equality Keywords:
+  - '"women" OR'
+  - '"gender" OR'
+  - '"equal pay" OR'
+  - '"reproductive rights" OR'
+  - '"discrimination" OR'
+  - '"intersectionality" OR'
+  - '"gender equality"'
+
+SDG 6 – Clean Water and Sanitation Keywords:
+  - '"*water*" OR'
+  - '"sanitation" OR'
+  - '"hygiene" OR'
+  - '"WASH" OR'
+  - '"blue infrastructure"'
+
+SDG 7 – Affordable and Clean Energy Keywords:
+  - '"energy" OR'
+  - '"solar" OR'
+  - '"wind power" OR'
+  - '"electricity" OR'
+  - '"clean fuel*" OR'
+  - '"green technology" OR'
+  - '"agrivoltaic*" OR'
+  - '"bioenergy"'
+
+SDG 8 – Decent Work and Economic Growth Keywords:
+  - '"employment" OR'
+  - '"labor" OR'
+  - '"economic growth" OR'
+  - '"entrepreneurship" OR'
+  - '"job*" OR'
+  - '"work"'
+
+SDG 9 – Industry, Innovation and Infrastructure Keywords:
+  - '"infrastructure" OR'
+  - '"industr*" OR'
+  - '"innovation" OR'
+  - '"technology" OR'
+  - '"manufacturing" OR'
+  - '"transport" OR'
+  - '"digital*"'
+
+SDG 10 – Reduced Inequalities Keywords:
+  - '"social inclusion" OR'
+  - '"economic equality" OR'
+  - '"marginaliz*" OR'
+  - '"redistribution" OR'
+  - '"accessibility"'
+
+SDG 11 – Sustainable Cities and Communities Keywords:
+  - '"urban*" OR'
+  - '"housing" OR'
+  - '"cities" OR'
+  - '"city" OR'
+  - '"green spaces" OR'
+  - '"green infrastructure" OR'
+  - '"flood"'
+
+SDG 12 – Responsible Consumption and Production Keywords:
+  - '"sustainable production" OR'
+  - '"waste" OR'
+  - '"circular economy" OR'
+  - '"recycling" OR'
+  - '"sustainable consumption" OR'
+  - '"certification" OR'
+  - '"resource efficiency"'
+
+SDG 13 – Climate Action Keywords:
+  - '"climate change" OR'
+  - '"emissions" OR'
+  - '"climate resilience" OR'
+  - '"global warming" OR'
+  - '"adaptation" OR'
+  - '"mitigation" OR'
+  - '"greenhouse gases" OR'
+  - '"climate policy" OR'
+  - '"climate finance" OR'
+  - '"disaster risk reduction" OR'
+  - '"nature-based solutions" OR'
+  - '"NbS"'
+
+SDG 14 – Life Below Water Keywords:
+  - '"marine" OR'
+  - '"ocean" OR'
+  - '"coral" OR'
+  - '"fish*" OR'
+  - '"coast*"'
+
+SDG 15 – Life on Land Keywords:
+  - '"biodiversity" OR'
+  - '"*forest*" OR'
+  - '"desertification" OR'
+  - '"wildlife" OR'
+  - '"soil" OR'
+  - '"nature"'
+
+SDG 16 – Peace, Justice and Strong Institutions Keywords:
+  - '"governance" OR'
+  - '"human rights" OR'
+  - '"rule of law" OR'
+  - '"corruption" OR'
+  - '"justice" OR'
+  - '"peace" OR'
+  - '"transparency" OR'
+  - '"security" OR'
+  - '"democracy"'
+
+SDG 17 – Partnerships for the Goals Keywords:
+  - '"partnerships" OR'
+  - '"finance" OR'
+  - '"trade" OR'
+  - '"data" OR'
+  - '"technology transfer" OR'
+  - '"multilateral governance" OR'
+  - '"international aid" OR'
+  - '"cooperation"'

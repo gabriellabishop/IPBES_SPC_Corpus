@@ -1,0 +1,62 @@
+# Chapter 4
+# chapter_4.yaml
+# v1
+"Set 1":
+  # document type = review article
+  - '"ecologic* connectivity" AND'
+
+"Set 2":
+  - '("ecological connectivity" OR "habitat connectivity" OR "landscape connectivity" OR "wildlife corridor*" OR "biological corridor*") AND ("benefits" OR "advantages" OR "positive" OR "impacts" OR "opportunities") AND ("risks" OR "drawbacks" OR "negative" OR "impacts" OR "challenges") AND ("ecosystem services" OR "ecosystem management")'
+
+"Set 3":
+  - '"structural connectivity" OR'
+  - '"functional connectivity"'
+
+"Set 4":
+  - '"connectivity analysis" OR'
+  - '"network analysis" OR'
+  - '"circuit theor*" OR'
+  - '"least-cost path*" OR'
+  - '"graph theory" OR'
+  - '"resistant kernels" OR'
+  - '"agent-based models" OR'
+  - '"Conefor" OR'
+  - '"pattern-oriented model*" OR'
+  - '"state-space model*" OR'
+  - '"corridor model*" OR'
+  - '"simulated individual" OR'
+  - '"movement paths" OR'
+  - '"hidden Markov models" OR'
+  - '"effective connectivity" OR'
+  - '"gene flow"'
+
+Set 5":
+  - '"ecological connectivity" AND ("indicator*" OR "index" OR "metric*" OR "objective")'
+
+"Set 6":
+  - '"ecological connectivity" OR'
+  - '"landscape connectivity" OR'
+  - '"functional connectivity" OR'
+  - '"connectivity conservation" AND'
+  - '"policy*" OR'
+  - '"framework*" OR'
+  - '"governance" OR'
+  - '"planning instrument" OR'
+  - '"initiative" OR'
+  - '"agreement" OR'
+  - '"global" OR'
+  - '"international" OR'
+  - '"regional strategy" OR'
+  - '"transboundary cooperation" OR'
+  - '"joint management" OR'
+  - '"cross-border conservation" OR'
+  - '"bioregional planning"'
+
+"Set 7":
+  - '("ecological connectivity" OR "spatial governance" AND "multi-level governance" OR "cross-scale governance" OR "transboundary governance") AND ("inclusive governance" OR "community-based management" OR "co-management") AND ("Indigenous Peoples" OR "Local Communities" OR "IPLCs") AND ("policy coherence" OR "cross-sectoral integration") AND ("land tenure" OR "property rights" OR "private land conservation")'
+
+"Set 8":
+  - '"dispersal" OR'
+  - '"migration" OR'
+  - '"nomadism" OR'
+  - '"landscape permeability"'

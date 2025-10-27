@@ -1,0 +1,32 @@
+# Chapter 2 Additional
+# chapter_add.yaml
+# v1
+Water:
+  - '"Water*" OR'
+  - '"Hydro*" OR'
+  - '"Catchment" OR'
+  - '"blue infrastructure"'
+
+Food:
+  - '"food" OR'
+  - '"agricultur*" OR'
+  - '"*nutrition" OR'
+  - '"hunger" OR'
+  - '"farm*"'
+
+Health:
+  - '"health*" OR'
+  - '"mortality" OR'
+  - '"diseases" OR'
+  - '"pandemics" OR'
+  - '"well-being" OR'
+  - '"wellbeing"'
+
+Climate:
+  - '"Climate" OR'
+  - '"energy" OR'
+  - '"emission*" OR'
+  - '"GHG" OR'
+  - '"greenhouse gas*" OR'
+  - '"flood*" OR'
+  - '"drought*"'

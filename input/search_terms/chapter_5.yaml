@@ -1,0 +1,179 @@
+# Chapter 5
+# chapter_5.yaml
+# v2
+# These are nested for topical grouping,
+# but each of these has to be applied at the SPC Corpus
+
+Sections 1 and 2:
+
+  Set 1:
+  - 'Future AND (projection OR projected OR predicted OR prediction OR forecast OR scenario)'
+
+  Set 2:
+  - 'Future AND (pathway OR narrative OR storyline OR foresight OR vision OR horizon scan OR trajectory OR imagination)'
+
+  Set 3:
+  - '"future-proof" OR'
+  - 'anticipate OR'
+  - '"forward-looking" OR'
+  - '"futures thinking" OR'
+  - '"future-oriented" OR'
+  - '"prospective" OR'
+  - '"plausible future" OR'
+  - '"scenario planning"'
+
+  Set 4:
+  - 'Foresight OR'
+  - 'backcasting OR'
+  - 'simulate OR'
+  - 'simulation OR'
+  - '"delphi method" OR'
+  - 'storytelling OR'
+  - '"environmental scan" OR'
+  - 'trend OR'
+  - 'megatrend'
+
+  Set 5:
+  - '(model AND scenario)'
+
+Section 3:
+
+  Set 1:
+  - '"drivers of change" OR'
+  - '"biodiversity driver" OR'
+  - '"social-ecological driver" OR'
+  - '"technological driver" OR'
+  - '"perennial driver" OR'
+  - '"emerging driver" OR'
+  - '"cascading driver"'
+
+  Set 2:
+  - '"Integrated assessment" OR'
+  - '"land-use change model" OR'
+  - '"Scenario model" OR'
+  - '"Social-ecological model" OR'
+  - 'agent-based model" OR'
+  - '"telecoupled systems model" OR'
+  - '"hybrid model" OR'
+  - '"participatory model" OR'
+  - '"data-driven foresight model"'
+
+  Set 3:
+  - '"value-based driver" OR'
+  - '"compound driver" OR'
+  - '"interacting driver" OR'
+  - '"distant driver"'
+
+Section 4:
+
+  Set 1:
+  - 'Synergy OR'
+  - 'tradeoff OR'
+  - 'trade-off OR'
+  - 'nexus OR'
+  - 'win-win OR'
+  - '"cross-sectoral interaction" OR'
+  - 'co-benefit'
+
+  Set 2:
+  - '"Integrated planning" OR'
+  - '"multifunctional" OR'
+  - '"nature-based solution" OR'
+  - '"adaptive governance" OR'
+  - '"cross-sectoral governance"'
+
+  Set 3:
+  - 'Spatial OR'
+  - 'temporal OR'
+  - 'thematic OR'
+  - 'cross-scale) AND (Synergy OR'
+  - 'tradeoff OR'
+  - '"trade-off" OR'
+  - 'nexus OR'
+  - '"win-win"'
+
+Section 5:
+
+  Set 1: 
+  - '"Adaptative management" OR'
+  - '"Adaptative governance" OR'
+  - '"Transformative adaptation" OR'
+  - '"Adaptive systems" OR'
+  - '"Adaptive foresight"'
+
+  Set 2:
+  - '(Model OR'
+  - 'data OR'
+  - '"decision-making under" OR'
+  - 'planning OR'
+  - 'scenario OR'
+  - 'epistemic OR'
+  - 'ontological) AND uncertainty'
+
+  Set 3:
+  - '"Tipping points" OR'
+  - 'hresholds OR'
+  - '"Planetary boundaries" OR'
+  - '"Nonlinear system dynamics" OR'
+  - 'Surprise'
+
+  Set 4:
+  - '"Cascading risk" OR'
+  - '"Risk management" OR'
+  - '"Environmental shocks" OR'
+  - '"Environmental risks" OR'
+  - '"Precautionary approach"'
+
+Section 6:
+
+  Set 1:
+  - '"Science-policy-practice" OR'
+  - '"transformative pathways" OR'
+  - '"transdisciplinary co-production"'
+
+  Set 2:
+  - '"Knowledge co-production" OR'
+  - '"community-based spatial planning" OR'
+  - '"indigenous mapping" OR'
+  - '"traditional knowledge" OR'
+  - '"participatory scenario planning"'
+
+  Set 3:
+  - '"Multi-level governance" OR'
+  - '"institutional capacity" OR'
+  - '"cross-sectoral coordination"'
+
+  Set 4:
+  - '"Planning for uncertainty" OR'
+  - '"adaptive planning" OR'
+  - '"resilience planning" OR'
+  - '"anticipatory governance"'
+
+Cross-cutting sets:
+
+  Set 1:
+  - '("Spatial scaling" OR "Temporal scaling" OR "Social scale" OR "Nested governance" OR "Multi-scale planning" OR "Cross-scale interaction" OR Telecoupling OR Teleconnection OR Metacoupling OR Spillover)'
+
+  Set 2:
+  - '"Indigenous and Local Knowledge" OR'
+  - 'ILK "Co-production of knowledge" OR'
+  - '"pluralism" OR'
+  - 'epistemic OR'
+  - '"Community-based natural resource management" OR'
+  - 'CBNRM OR'
+  - 'Biocultural OR'
+  - '"Traditional ecological knowledge" OR'
+  - 'TEK OR'
+  - '"Customary governance" OR'
+  - '"tenure systems" OR'
+  - '"Participatory mapping" OR'
+  - '"Cross-cultural" OR'
+  - '"knowledge integration" OR'
+  - '((Gender OR Social) AND Inclusion) OR' 
+  - '"Gender-responsive" OR'
+  - '"Intersectionality" OR'
+  - 'equity OR'
+  - '"Women’s roles" OR'
+  - '"Gendered" OR'
+  - '"Empowerment" OR'
+  - '"capacity-building"'
