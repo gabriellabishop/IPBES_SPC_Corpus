@@ -891,6 +891,60 @@ if (!file.exists(fn)) {
 }
 ```
 
+## Chapter 2
+
+```{r}
+#| label: get_st_hits_chapter_2
+
+fn <- file.path(params$chapter_2, "st_hits.rds")
+if (!file.exists(fn)) {
+  spcc <- paste0(
+    "(",
+    stcompact(params$search_terms$spc_corpus$spc),
+    ") AND (",
+    stcompact(params$search_terms$spc_corpus$nature),
+    ")"
+  )
+  queries <- lapply(
+    params$search_terms$chapter_2,
+    function(s) {
+      openalexPro::pro_query(
+        title_and_abstract.search = paste0(
+          "(",
+          spcc,
+          ") AND (",
+          stcompact(s),
+          ")"
+        ),
+        type = params$types_filter,
+        from_publication_date = params$publication_date$from,
+        to_publication_date = params$publication_date$to
+      )
+    }
+  )
+
+  result <- pbapply::pblapply(
+    queries,
+    function(query) {
+      query |>
+        openalexR::oa_request(
+          count_only = TRUE,
+          verbose = TRUE
+        ) |>
+        unlist()
+    }
+  ) |>
+    do.call(what = cbind) |>
+    t() |>
+    as.data.frame() |>
+    dplyr::select(count)
+
+  rownames(result) <- names(queries)
+  saveRDS(result, file = fn)
+}
+```
+
+
 ## Chapter 3
 
 ```{r}
@@ -1367,22 +1421,31 @@ readRDS(file.path(params$corpus, "st_languages.rds")) |>
 
 ## Individual Chapter
 
-Here we show the sub-searches for the individual chapters. In the tables indicating the number, an `
-NA
-` value indicates that the search string was to long (most likely) or any other error occured in the search. The same applies when an error message is given. 
+Here we show the sub-searches for the individual chapters. In the tables indicating the number, an `NA` value indicates that the search string was to long (most likely) or any other error occured in the search. The same applies when an error message is given. 
 
 ### Chapter 1
 
-`
-``
-{
-  r
-}
+```{r}
 #| label: chapter_1_st_hits
 
 readRDS(file.path(params$chapter_1, "st_hits.rds")) |>
+  base::format(big.mark = ",") |>
   knitr::kable(
-    col.names = c("Count")
+    col.names = c("Count"),
+    align = "r"
+  )
+```
+
+### Chapter 2
+
+```{r}
+#| label: chapter_2_st_hits
+
+readRDS(file.path(params$chapter_2, "st_hits.rds")) |>
+  base::format(big.mark = ",") |>
+  knitr::kable(
+    col.names = c("Count"),
+    align = "r"
   )
 ```
 
@@ -1392,8 +1455,10 @@ readRDS(file.path(params$chapter_1, "st_hits.rds")) |>
 #| label: chapter_3_st_hits
 
 readRDS(file.path(params$chapter_3, "st_hits.rds")) |>
+  base::format(big.mark = ",") |>
   knitr::kable(
-    col.names = c("Count")
+    col.names = c("Count"),
+    align = "r"
   )
 ```
 
@@ -1403,8 +1468,10 @@ readRDS(file.path(params$chapter_3, "st_hits.rds")) |>
 #| label: chapter_4_st_hits
 
 readRDS(file.path(params$chapter_4, "st_hits.rds")) |>
+  base::format(big.mark = ",") |>
   knitr::kable(
-    col.names = c("Count")
+    col.names = c("Count"),
+    align = "r"
   )
 ```
 
@@ -1428,8 +1495,12 @@ do.call(
     ]
   })
 ) |>
+  dplyr::mutate(
+    count = base::format(count, big.mark = ",")
+  ) |>
   knitr::kable(
-    col.names = c("Section", "Set", "Count")
+    col.names = c("Section", "Set", "Count"),
+    align = c("c", "c", "r")
   )
 
 ```
@@ -1440,7 +1511,9 @@ do.call(
 #| label: chapter_6_st_hits
 
 readRDS(file.path(params$chapter_6, "st_hits.rds")) |>
+  base::format(big.mark = ",") |>
   knitr::kable(
-    col.names = c("Count")
+    col.names = c("Count"),
+    align = "r"
   )
 ```
