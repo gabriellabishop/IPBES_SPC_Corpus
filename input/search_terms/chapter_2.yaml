@@ -3,28 +3,28 @@
 # v1
 GBF-1 - Urban:
   - '"urban" OR'
-  - '"cit*" OR'
+  - '"city" OR'
   - '"periurban" OR'
   - '"metropolis"'
 
 GBF-1 - Rural:
   - '"rural" OR'
-  - '"agricultur*" OR'
-  - '"forest*" OR'
+  - '"agriculture" OR'
+  - '"forest" OR'
   - '"mountain"'
 
 GBF-1 - Freshwater:
   - '"freshwater" OR'
-  - '"lake*" OR'
-  - '"stream*" OR'
+  - '"lake" OR'
+  - '"stream" OR'
   - '"current" OR'
-  - '"river*" OR'
-  - '"wetland*" OR'
+  - '"river" OR'
+  - '"wetland" OR'
   - '"watershed" OR'
   - '"groundwater" OR'
-  - '"aquifer*" OR'
+  - '"aquifer" OR'
   - '"lagoon" OR'
-  - '"peatland*"'
+  - '"peatland"'
 
 GBF-1 - Marine:
   - '"sea" OR'
@@ -41,7 +41,7 @@ GBF-1 - Marine:
 
 GBF - 2 (Ecosystem restoration):
   - '"restoration" OR'
-  - '"degrad*" OR'
+  - '"degradation" OR'
   - '"regeneration" OR'
   - '"ecosystem rehabilitation" OR'
   - '"environmental rehabilitation" OR'
@@ -76,7 +76,6 @@ Target 5 (Wild species trade & use):
   - '"CITES"'
 
 Target 6 (Invasive alien species):
-  - '"i nvasive alien species" OR'
   - '"invasive species" OR'
   - '"alien species" OR'
   - '"IAS"'
@@ -85,8 +84,8 @@ Target 7 (Pollution):
   - '"pollution" OR'
   - '"nutrient runoff" OR'
   - '"excess nutrients" OR'
-  - '"pesticide*" OR'
-  - '"*plastic" OR'
+  - '"pesticide" OR'
+  - '"plastic" OR'
   - '"PFAS" OR'
   - '"forever chemicals" OR'
   - '"contamination" OR'
@@ -105,8 +104,8 @@ Target 8 (Climate change & resilience):
 Target 9 (Wild species management & use):
   - '"wild species management" OR'
   - '"sustainable use of wild species" OR'
-  - '"indigenous people*" OR'
-  - '"IPLC*" OR'
+  - '"indigenous people" OR'
+  - '"IPLC" OR'
   - '"community-based management"'
 
 Target 10 (Sustainability in agriculture, aquaculture, forestry & fisheries):
@@ -121,12 +120,12 @@ Target 10 (Sustainability in agriculture, aquaculture, forestry & fisheries):
 Target 11 (Nature’s contributions to people / ecosystem services):
   - '"ecosystem services" OR'
   - '"nature’s contributions to people" OR'
-  - '"NCP*" OR'
+  - '"NCP" OR'
   - '"people’s contributions to nature"'
 
 Target 12 (Green & blue spaces, urban planning):
-  - '"green space*" OR'
-  - '"blue space*" OR'
+  - '"green space" OR'
+  - '"blue space" OR'
   - '"urban planning" OR'
   - '"green infrastructure" OR'
   - '"blue infrastructure" OR'
@@ -140,7 +139,7 @@ Target 13 (Genetic resources & benefit sharing):
   - '"Nagoya protocol"'
 
 Target 14 (Biodiversity integration in decision-making):
-  - '" biodiversity policy" OR'
+  - '"biodiversity policy" OR'
   - '"environmental impact assessment" OR'
   - '"EIA" OR'
   - '"strategic environmental assessment" OR'
@@ -149,13 +148,12 @@ Target 14 (Biodiversity integration in decision-making):
   - '"biodiversity action"'
 
 Target 15 (Business & financial institutions disclosure & risk):
-  - '"compan*" OR'
+  - '"company" OR'
   - '"corporate responsibility" OR'
-  - '"business*" OR'
-  - '"supply chain*" OR'
+  - '"business" OR'
+  - '"supply chain" OR'
   - '"corporate biodiversity reporting" OR'
   - '"social responsibility" OR'
-  - '"business" OR'
   - '"investment"'
 
 Target 16 (Sustainable consumption):
@@ -200,20 +198,20 @@ Target 22 (Participation & inclusion):
   - '"local communities" OR'
   - '"youth" OR'
   - '"participatory governance" OR'
-  - '"minorit*" OR'
+  - '"minority" OR'
   - '"procedural justice" OR'
   - '"non-human" OR'
   - '"women" OR'
   - '"girls" OR'
   - '"rights" OR'
-  - '"defender*" OR'
-  - '"activist*" OR'
-  - '"guardian*"'
+  - '"defender" OR'
+  - '"activist" OR'
+  - '"guardian"'
 
 Target 23 (Gender equality):
   - '"gender" OR'
-  - '"women*" OR'
-  - '"woman*" OR'
+  - '"women" OR'
+  - '"woman" OR'
   - '"girls"'
 
 Related to spatial planning process:
