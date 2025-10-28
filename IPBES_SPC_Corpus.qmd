@@ -28,11 +28,12 @@ abstract: >
 
 license: "CC BY"
 
+doi: &doi 10.5281/zenodo.XXXXX
+
 citation: 
   type: report
   container-title: 'IPBES Spatial Planning and Connectivity Assessment'
-  doi: 10.5281/zenodo.XXXXX
-doi: 10.5281/zenodo.XXXXX
+  doi: *doi
 version: 0.0.1 
 
 format:
@@ -104,25 +105,6 @@ params:
     sample_size: 10000
     mc.cores: 8
 ---
-
-
- 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.xxxxx.svg)](https://doi.org/10.5281/zenodo.xxxxx)
-[![GitHub](https://img.shields.io/github/release/IPBES-Data/IPBES_TCA_Corpus.svg)](https://github.com/IPBES-Data/IPBES_SPC_Corpus)
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-
-<!-- Part of the Data Management Report [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10251349.svg)](https://doi.org/10.5281/zenodo.10251349) -->
-
-# Disclaimer
-<!-- This is a technical background document for the IPBES Thematic assessment of the underlying causes of biodiversity loss, determinants of transformative change and options for achieving the 2050 vision for biodiversity. It provides technical details and implementation settings for the data management report of the [Transformative Change Assessment Corpus and its usage](https://doi.org/10.5281/zenodo.10251349). The sole purpose of this document is to document the workflows used to produce statistics, figures and maps, to document the source of the data and to make the process transparent and reproducible. -->
-
-# Contributors
-## Assessment Experts
-
-- xxx, yyy [![ORCID](./images/ORCID-iD_icon-16x16.png)](https://orcid.org/XXXXXXX)
-
-## Data and Knowledge tsu
-
 
 ```{r}
 #| label: setup
@@ -198,6 +180,32 @@ dir.create(params$chapter_5, recursive = TRUE, showWarnings = FALSE)
 dir.create(params$chapter_6, recursive = TRUE, showWarnings = FALSE)
 ```
 
+ 
+<p align="center">
+`r sprintf("[![Version](https://img.shields.io/badge/DOI-%s-blue.svg)](#)", URLencode(rmarkdown::metadata$doi, reserved = TRUE))`
+[![GitHub](https://img.shields.io/github/release/IPBES-Data/IPBES_SPC_Corpus.svg)](https://github.com/IPBES-Data/IPBES_SPC_Corpus)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/) 
+</p>
+
+<p align="center">
+`r sprintf("[![Version](https://img.shields.io/badge/Version-%s-blue.svg)](#)", URLencode(rmarkdown::metadata$version, reserved = TRUE))`
+`r sprintf("[![Build](https://img.shields.io/badge/Build-%s-greene.svg)](#)", build)`
+</p>
+
+<!-- Part of the Data Management Report [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10251349.svg)](https://doi.org/10.5281/zenodo.10251349) -->
+
+# Disclaimer
+<!-- This is a technical background document for the IPBES Thematic assessment of the underlying causes of biodiversity loss, determinants of transformative change and options for achieving the 2050 vision for biodiversity. It provides technical details and implementation settings for the data management report of the [Transformative Change Assessment Corpus and its usage](https://doi.org/10.5281/zenodo.10251349). The sole purpose of this document is to document the workflows used to produce statistics, figures and maps, to document the source of the data and to make the process transparent and reproducible. -->
+
+# Contributors
+## Assessment Experts
+
+- xxx, yyy [![ORCID](./images/ORCID-iD_icon-16x16.png)](https://orcid.org/XXXXXXX)
+
+## Data and Knowledge tsu
+
+
+
 # Working Title
 IPBES_SPC_Corpus
 
@@ -205,7 +213,6 @@ IPBES_SPC_Corpus
 
 [Github repository](https://github.com/IPBES-Data/IPBES_SPC_Corpus){target="_blank"}
 
-## Build No: ``r build``
 
 # Introduction
 
@@ -222,7 +229,7 @@ The following terminology is used in this document:
 
 - **Corpus**: A body of works as based on a search on [OpenAlex](https://openalex.org)
 - **Spatial Planning and Connectivity Assessment Corpus**: Short: SPC corpus; The corpus resulting from the search terms TO BE ADDED
-- **work**: terminology used for a single document in their dataset. Each work has a unique OpenAlex id, but not necesarily a DOI.
+- **work**: terminology used for a single document in their dataset. Each work has a unique OpenAlex id, but not necessarily a DOI.
 
 The following searches are conducted on Title and Abstract only to account for fluctuating availability of full text searches and make the search more focussed..
 
