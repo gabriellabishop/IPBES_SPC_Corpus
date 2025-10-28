@@ -5,12 +5,11 @@
 Set 1:
 - '((protected OR conserved) AND areas) OR "OECM" OR "other effective area-based conservation measures" OR "ITT" OR "indigenous and traditional territories") AND'
 - '("NBSAP" OR (national AND ("Biodiversity Strategy" OR target)) OR "downscaling") AND'
-- '("case study" OR "best practice" OR "conservation planning" OR "spatial prioritization" OR "spatial planning") AND'
-- '("regional" OR "national" OR "subnational" OR "mountain" OR "marine" OR (Indigenous AND ("customary land" OR "protected areas")) OR transboundary)'
+- '("case study" OR "best practice" OR "planning" OR "spatial prioritization") AND'
+- '("regional" OR "national" OR "subnational" OR "mountain" OR "marine" OR (Indigenous AND ("land" OR "protected areas")) OR transboundary)'
 
 Set 2:
-- '(ecological restoration" OR "ecosystem restoration" OR "habitat restoration" OR "forest landscape restoration" OR "FLR") AND'
-- '("marine restoration" OR "wetland restoration" OR "freshwater restoration" OR "grassland restoration" OR "agroecosystem restoration" OR "mountains ecosystem") AND'
+- '"restoration" AND'
 - '("inclusivity" OR "participation" OR "co-management" OR "Indigenous knowledge" OR "traditional ecological knowledge" OR "ILK" OR "local knowledge" OR "community-based restoration" OR "stakeholder engagement" OR "social equity" OR "justice" OR "gender inclusion")'
 
 Set 3:
