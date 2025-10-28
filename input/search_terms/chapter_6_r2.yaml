@@ -2,12 +2,12 @@
 # chapter_6_r2.yaml
 # v1
 R2:
-  - '"case stud*" OR'
   - '"case" OR'
-  - '"study area*" OR'
-  - '"example*" OR'
+  - '"study area" OR'
+  - '"example" OR'
   - '"evaluation" OR'
   - '"concrete" OR'
-  - '"empirical", OR'
+  - '"empirical" OR'
   - '"practical" OR'
-  - '"initiative*"'
+  - '"insights" OR'
+  - '"initiative"'
