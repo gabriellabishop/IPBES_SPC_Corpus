@@ -15,7 +15,7 @@ Set 1:
 - '"integrated landscape management"'
 
 Set 2:
-- '("political support" OR'
+- '"political support" OR'
 - '"environmental leadership" OR'
 - '"ministerial alignment" OR'
 - '"strategic prioritization" OR'
@@ -23,7 +23,7 @@ Set 2:
 
 Set 3:
 - '"stakeholder engagement" OR'
-- participation OR'
+- 'participation OR'
 - '"co-design" OR'
 - '"co-production" OR'
 - '"community-based management" OR'
@@ -36,25 +36,25 @@ Set 3:
 - '"public consultation"'
 
 Set 4:
-- '(collaboration OR'
-- trust OR'
-- partnership OR'
+- 'collaboration OR'
+- 'trust OR'
+- 'partnership OR'
 - '"multi-stakeholder platform" OR'
-- coalition OR'
+- 'coalition OR'
 - '"inter-organizational network" OR'
 - 'cooperation'
 
 Set 5:
-- '("biodiversity finance" OR'
+- '"biodiversity finance" OR'
 - '"blended finance" OR'
 - '"green finance" OR'
 - '"conservation trust funds" OR'
 - '"Payment of ecosystem services" OR'
 - '"natural capital accounting" OR'
-- '"biodiversity offsets")' 
+- '"biodiversity offsets"' 
 
 Set 6:
-- '("environmental law" OR'
+- '"environmental law" OR'
 - 'legislation OR'
 - '"statutory framework" OR'
 - '"policy instruments" OR'
@@ -74,10 +74,10 @@ Set 7:
 - 'pipeline OR'
 - '"diversity and inclusion" OR'
 - '"gender inequality" OR'
-- '"girl''s education" OR'
+- '"girl's education" OR'
 - '"Indigenous knowledge" OR'
 - '"generational knowledge" OR'
-- '"institutional memory")'
+- '"institutional memory"'
 
 Set 8.1:
 - '"species distribution maps" OR'
