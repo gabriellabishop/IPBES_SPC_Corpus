@@ -3,8 +3,8 @@
 # v2 shortened
 
 Set 1:
-- '((protected OR conserved) AND areas) OR "OECM" OR "other effective area-based conservation measures" OR "ITT" OR "indigenous and traditional territories") AND'
-- '("NBSAP" OR (national AND ("Biodiversity Strategy" OR target)) OR "downscaling") AND'
+- '(((protected OR conserved) AND areas) OR "other effective area-based conservation measures" OR "indigenous and traditional territories") AND'
+- '((national AND ("Biodiversity Strategy" OR target)) OR "downscaling") AND'
 - '("case study" OR "best practice" OR "planning" OR "spatial prioritization") AND'
 - '("regional" OR "national" OR "subnational" OR "mountain" OR "marine" OR (Indigenous AND ("land" OR "protected areas")) OR transboundary)'
 
