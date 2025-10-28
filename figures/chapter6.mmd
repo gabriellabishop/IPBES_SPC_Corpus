@@ -1,5 +1,6 @@
+%%{init: {'flowchart': {'htmlLabels': true}}}%%
 flowchart LR
-    Start([SPC Corpus]) --> Ch6["chapter_6.yaml<br/>Level 2 refinements"]
+    Start([SPC Corpus]) --> Ch6["<u><span style='color:#1a0dab;'>chapter_6.yaml<br/>Level 2 refinements</span></u>"]
     click Ch6 "./input/search_terms/chapter_6.yaml" "Open chapter_6.yaml"
 
     subgraph Chapter6Sets["Chapter 6 searches"]
@@ -26,7 +27,7 @@ flowchart LR
     Ch6 --> C6_9
     Ch6 --> C6_10
 
-Ch6R2["chapter_6_r2.yaml<br/>Optional Level 3 filter"]
+Ch6R2["<u><span style='color:#1a0dab;'>chapter_6_r2.yaml<br/>Optional Level 3 filter</span></u>"]
 Chapter6Sets --> Ch6R2
 click Ch6R2 "./input/search_terms/chapter_6_r2.yaml" "Open chapter_6_r2.yaml"
 subgraph Chapter6Case["Chapter 6 searches"]

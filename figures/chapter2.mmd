@@ -1,5 +1,6 @@
+%%{init: {'flowchart': {'htmlLabels': true}}}%%
 flowchart LR
-    Start([SPC Corpus]) --> Ch2L2["chapter_2.yaml<br/>Level 2 GBF bundles"]
+    Start([SPC Corpus]) --> Ch2L2["<u><span style='color:#1a0dab;'>chapter_2.yaml<br/>Level 2 GBF bundles</span></u>"]
     click Ch2L2 "../search_terms/chapter_2.yaml" "Open chapter_2.yaml"
 
     subgraph L1_GBF["GBF contexts & targets"]
@@ -60,7 +61,7 @@ flowchart LR
     Ch2L2 --> T23
     Ch2L2 --> REL
 
-    Start --> Ch2L3["chapter_2_add.yaml<br/>Level 3 nexus themes"]
+    Start --> Ch2L3["<u><span style='color:#1a0dab;'>chapter_2_add.yaml<br/>Level 3 nexus themes</span></u>"]
     click Ch2L3 "../search_terms/chapter_2_add.yaml" "Open chapter_2_add.yaml"
     subgraph L1_NexusSets["Nexus add-ons"]
         direction TB
@@ -74,7 +75,7 @@ flowchart LR
     Ch2L3 --> Nexus_Health
     Ch2L3 --> Nexus_Climate
 
-    L1_GBF --> Ch2L4["chapter_2_sdg.yaml<br/>Level 4 SDG filters"]
+    L1_GBF --> Ch2L4["<u><span style='color:#1a0dab;'>chapter_2_sdg.yaml<br/>Level 4 SDG filters</span></u>"]
     L1_NexusSets --> Ch2L4
     click Ch2L4 "../search_terms/chapter_2_sdg.yaml" "Open chapter_2_sdg.yaml"
     subgraph SDGSets["SDG goal filters"]
