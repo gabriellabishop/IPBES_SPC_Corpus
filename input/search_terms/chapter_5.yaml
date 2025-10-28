@@ -52,7 +52,7 @@ Section 3:
   - '"land-use change model" OR'
   - '"Scenario model" OR'
   - '"Social-ecological model" OR'
-  - 'agent-based model" OR'
+  - '"agent-based model" OR'
   - '"telecoupled systems model" OR'
   - '"hybrid model" OR'
   - '"participatory model" OR'
@@ -69,11 +69,11 @@ Section 4:
   Set 1:
   - 'Synergy OR'
   - 'tradeoff OR'
-  - 'trade-off OR'
+  - '"trade-off" OR'
   - 'nexus OR'
-  - 'win-win OR'
+  - '"win-win" OR'
   - '"cross-sectoral interaction" OR'
-  - 'co-benefit'
+  - '"co-benefit"'
 
   Set 2:
   - '"Integrated planning" OR'
@@ -83,14 +83,8 @@ Section 4:
   - '"cross-sectoral governance"'
 
   Set 3:
-  - 'Spatial OR'
-  - 'temporal OR'
-  - 'thematic OR'
-  - 'cross-scale) AND (Synergy OR'
-  - 'tradeoff OR'
-  - '"trade-off" OR'
-  - 'nexus OR'
-  - '"win-win"'
+  - '(Spatial OR temporal OR thematic OR "cross-scale") AND'
+  - '(Synergy OR tradeoff OR "trade-off" OR nexus OR "win-win")'
 
 Section 5:
 
@@ -102,17 +96,12 @@ Section 5:
   - '"Adaptive foresight"'
 
   Set 2:
-  - '(Model OR'
-  - 'data OR'
-  - '"decision-making under" OR'
-  - 'planning OR'
-  - 'scenario OR'
-  - 'epistemic OR'
-  - 'ontological) AND uncertainty'
+  - '(Model OR data OR "decision-making under" OR planning OR scenario OR epistemic OR ontological) AND'
+  - 'uncertainty'
 
   Set 3:
   - '"Tipping points" OR'
-  - 'hresholds OR'
+  - 'thresholds OR'
   - '"Planetary boundaries" OR'
   - '"Nonlinear system dynamics" OR'
   - 'Surprise'
@@ -155,18 +144,14 @@ Cross-cutting sets:
   - '("Spatial scaling" OR "Temporal scaling" OR "Social scale" OR "Nested governance" OR "Multi-scale planning" OR "Cross-scale interaction" OR Telecoupling OR Teleconnection OR Metacoupling OR Spillover)'
 
   Set 2:
-  - '"Indigenous and Local Knowledge" OR'
-  - 'ILK "Co-production of knowledge" OR'
+  - '((Indigenous OR local OR ecological OR "co-production of") AND knowledge) OR'
   - '"pluralism" OR'
   - 'epistemic OR'
-  - '"Community-based natural resource management" OR'
-  - 'CBNRM OR'
+  - '"Community-based" OR'
   - 'Biocultural OR'
-  - '"Traditional ecological knowledge" OR'
-  - 'TEK OR'
-  - '"Customary governance" OR'
-  - '"tenure systems" OR'
-  - '"Participatory mapping" OR'
+  - '"Customary" OR'
+  - '"tenure" OR'
+  - '"Participatory" OR'
   - '"Cross-cultural" OR'
   - '"knowledge integration" OR'
   - '((Gender OR Social) AND Inclusion) OR' 
