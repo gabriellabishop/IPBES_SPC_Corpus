@@ -180,7 +180,35 @@ dir.create(params$chapter_5, recursive = TRUE, showWarnings = FALSE)
 dir.create(params$chapter_6, recursive = TRUE, showWarnings = FALSE)
 ```
 
- 
+```{r}
+#| label: mermaid_helpers
+#| include: false
+
+format_count <- function(x) {
+  ifelse(
+    is.na(x),
+    "NA",
+    format(x, big.mark = ",", trim = TRUE)
+  )
+}
+
+render_mermaid <- function(path, replacements) {
+  template <- readLines(path)
+  for (nm in names(replacements)) {
+    template <- gsub(
+      paste0("<<", nm, ">>"),
+      replacements[[nm]],
+      template,
+      fixed = TRUE
+    )
+  }
+  cat("```{mermaid}\n")
+  cat(paste(template, collapse = "\n"))
+  cat("\n```\n")
+}
+```
+
+
 <p align="center">
 `r sprintf("[![Version](https://img.shields.io/badge/DOI-%s-blue.svg)](#)", URLencode(rmarkdown::metadata$doi, reserved = TRUE))`
 [![GitHub](https://img.shields.io/github/release/IPBES-Data/IPBES_SPC_Corpus.svg)](https://github.com/IPBES-Data/IPBES_SPC_Corpus)
@@ -196,6 +224,10 @@ dir.create(params$chapter_6, recursive = TRUE, showWarnings = FALSE)
 
 # Disclaimer
 <!-- This is a technical background document for the IPBES Thematic assessment of the underlying causes of biodiversity loss, determinants of transformative change and options for achieving the 2050 vision for biodiversity. It provides technical details and implementation settings for the data management report of the [Transformative Change Assessment Corpus and its usage](https://doi.org/10.5281/zenodo.10251349). The sole purpose of this document is to document the workflows used to produce statistics, figures and maps, to document the source of the data and to make the process transparent and reproducible. -->
+
+# LLM Usage Disclosure
+
+Code and charts in this project have been generated with the assistance of the codex LLM tools in Positron. All content and code is based on conceptuaisation by the authors and has been thoroughly reviewed and edited by humans afterwards.
 
 # Contributors
 ## Assessment Experts
@@ -235,6 +267,7 @@ The following searches are conducted on Title and Abstract only to account for f
 
 ## Schematic Overview
 
+This is a schematic overview of the search strategy. It is shown again in the Results section with the numbers of resulting hits.
 ### Overview
 
 ```{mermaid}
@@ -909,44 +942,117 @@ if (!file.exists(fn)) {
     ") AND (",
     stcompact(params$search_terms$spc_corpus$nature),
     ")"
-  )
+  ) |>
+    stcompact()
+
   queries <- lapply(
     params$search_terms$chapter_2,
-    function(s) {
-      openalexPro::pro_query(
-        title_and_abstract.search = paste0(
-          "(",
-          spcc,
-          ") AND (",
-          stcompact(s),
-          ")"
-        ),
-        type = params$types_filter,
-        from_publication_date = params$publication_date$from,
-        to_publication_date = params$publication_date$to
+    function(section) {
+      lapply(
+        section,
+        function(s) {
+          openalexPro::pro_query(
+            title_and_abstract.search = paste0(
+              "(",
+              spcc,
+              ") AND (",
+              stcompact(s),
+              ")"
+            ),
+            type = params$types_filter,
+            from_publication_date = params$publication_date$from,
+            to_publication_date = params$publication_date$to
+          )
+        }
       )
     }
   )
 
-  result <- pbapply::pblapply(
-    queries,
-    function(query) {
-      query |>
-        openalexR::oa_request(
-          count_only = TRUE,
-          verbose = TRUE
-        ) |>
-        unlist()
+  result <- lapply(
+    names(queries),
+    function(sect_nm) {
+      result <- lapply(
+        names(queries[[sect_nm]]),
+        function(nm) {
+          message("Retrieving ", sect_nm, " - ", nm, " ...")
+          result <- c(
+            count = NA_integer_,
+            db_response_time_ms = NA_integer_,
+            page = NA_integer_,
+            per_page = NA_integer_
+          )
+          try(
+            result <- queries[[sect_nm]][nm] |>
+              openalexR::oa_request(
+                count_only = TRUE,
+                verbose = TRUE
+              ) |>
+              unlist(),
+            silent = FALSE
+          )
+          return(result)
+        }
+      ) |>
+        do.call(what = cbind) |>
+        t() |>
+        as.data.frame() |>
+        dplyr::select(count)
+      browser()
+      rownames(result) <- names(queries[[sect_nm]])
+      return(result)
     }
-  ) |>
-    do.call(what = cbind) |>
-    t() |>
-    as.data.frame() |>
-    dplyr::select(count)
+  )
+  names(result) <- names(queries)
 
-  rownames(result) <- names(queries)
   saveRDS(result, file = fn)
 }
+
+# fn <- file.path(params$chapter_2, "st_hits.rds")
+# if (!file.exists(fn)) {
+#   spcc <- paste0(
+#     "(",
+#     stcompact(params$search_terms$spc_corpus$spc),
+#     ") AND (",
+#     stcompact(params$search_terms$spc_corpus$nature),
+#     ")"
+#   )
+#   queries <- lapply(
+#     params$search_terms$chapter_2,
+#     function(s) {
+#       openalexPro::pro_query(
+#         title_and_abstract.search = paste0(
+#           "(",
+#           spcc,
+#           ") AND (",
+#           stcompact(s),
+#           ")"
+#         ),
+#         type = params$types_filter,
+#         from_publication_date = params$publication_date$from,
+#         to_publication_date = params$publication_date$to
+#       )
+#     }
+#   )
+
+#   result <- pbapply::pblapply(
+#     queries,
+#     function(query) {
+#       query |>
+#         openalexR::oa_request(
+#           count_only = TRUE,
+#           verbose = TRUE
+#         ) |>
+#         unlist()
+#     }
+#   ) |>
+#     do.call(what = cbind) |>
+#     t() |>
+#     as.data.frame() |>
+#     dplyr::select(count)
+
+#   rownames(result) <- names(queries)
+#   saveRDS(result, file = fn)
+# }
 ```
 
 
@@ -1304,6 +1410,22 @@ readRDS(file.path(params$corpus, "st_hits.rds")) |>
   knitr::kable(format = "html", escape = FALSE)
 ```
 
+```{r}
+#| label: overview_counts_mermaid
+#| results: 'asis'
+
+corpus_counts <- readRDS(file.path(params$corpus, "st_hits.rds"))
+
+render_mermaid(
+  file.path("figures", "overview.mmd"),
+  list(
+    SPC_LIST = format_count(corpus_counts[["spc", "count"]]),
+    NATURE_LIST = format_count(corpus_counts[["nature", "count"]]),
+    BASE_QUERY = format_count(corpus_counts[["spcc", "count"]])
+  )
+)
+```
+
 ### Publication Years
 
 ```{r}
@@ -1424,6 +1546,7 @@ readRDS(file.path(params$corpus, "st_languages.rds")) |>
   )
 ```
 
+
 ## Individual Chapter
 
 Here we show the sub-searches for the individual chapters. In the tables indicating the number, an `NA` value indicates that the search string was to long (most likely) or any other error occured in the search. The same applies when an error message is given. 
@@ -1433,12 +1556,34 @@ Here we show the sub-searches for the individual chapters. In the tables indicat
 ```{r}
 #| label: chapter_1_st_hits
 
-readRDS(file.path(params$chapter_1, "st_hits.rds")) |>
-  base::format(big.mark = ",") |>
+ch1_hits <- readRDS(file.path(params$chapter_1, "st_hits.rds"))
+
+ch1_counts <- setNames(ch1_hits$count, rownames(ch1_hits))
+
+ch1_hits |>
+  dplyr::mutate(count = format_count(count)) |>
   knitr::kable(
     col.names = c("Count"),
     align = "r"
   )
+```
+
+```{r}
+#| label: chapter_1_mermaid
+#| results: 'asis'
+
+render_mermaid(
+  file.path("figures", "chapter1.mmd"),
+  c(
+    C1_1 = format_count(ch1_counts[["Set 1"]]),
+    C1_2 = format_count(ch1_counts[["Set 2"]]),
+    C1_3 = format_count(ch1_counts[["Set 3"]]),
+    C1_4 = format_count(ch1_counts[["Set 4"]]),
+    C1_5 = format_count(ch1_counts[["Set 5"]]),
+    C1_6 = format_count(ch1_counts[["Set 6"]]),
+    C1_7 = format_count(ch1_counts[["Set 7"]])
+  )
+)
 ```
 
 ### Chapter 2
@@ -1446,51 +1591,16 @@ readRDS(file.path(params$chapter_1, "st_hits.rds")) |>
 ```{r}
 #| label: chapter_2_st_hits
 
-readRDS(file.path(params$chapter_2, "st_hits.rds")) |>
-  base::format(big.mark = ",") |>
-  knitr::kable(
-    col.names = c("Count"),
-    align = "r"
-  )
-```
+ch2_hits <- readRDS(file.path(params$chapter_2, "st_hits.rds"))
 
-### Chapter 3
-
-```{r}
-#| label: chapter_3_st_hits
-
-readRDS(file.path(params$chapter_3, "st_hits.rds")) |>
-  base::format(big.mark = ",") |>
-  knitr::kable(
-    col.names = c("Count"),
-    align = "r"
-  )
-```
-
-### Chapter 4
-
-```{r}
-#| label: chapter_4_st_hits
-
-readRDS(file.path(params$chapter_4, "st_hits.rds")) |>
-  base::format(big.mark = ",") |>
-  knitr::kable(
-    col.names = c("Count"),
-    align = "r"
-  )
-```
-
-### Chapter 5
-
-```{r}
-#| label: chapter_5_st_hits
-
-counts <- readRDS(file.path(params$chapter_5, "st_hits.rds"))
+ch2_counts <- lapply(ch2_hits, function(df) {
+  setNames(df$count, rownames(df))
+})
 
 do.call(
   rbind,
-  lapply(names(counts), function(sect_nm) {
-    df <- counts[[sect_nm]]
+  lapply(names(ch2_hits), function(sect_nm) {
+    df <- ch2_hits[[sect_nm]]
     df$section <- sect_nm
     df$set <- rownames(df)
     rownames(df) <- NULL
@@ -1501,7 +1611,172 @@ do.call(
   })
 ) |>
   dplyr::mutate(
-    count = base::format(count, big.mark = ",")
+    count = format_count(count)
+  ) |>
+  knitr::kable(
+    col.names = c("Section", "Set", "Count"),
+    align = c("c", "c", "r")
+  )
+```
+
+```{r}
+#| label: chapter_2_mermaid
+#| results: 'asis'
+
+ch2_gbf <- ch2_counts[["GBF"]]
+ch2_targets <- ch2_counts[["Targets"]]
+ch2_rel <- ch2_counts[["Related to spatial planning process"]]
+ch2_nexus <- ch2_counts[["Nexus"]]
+
+fmt_gbf <- function(name) format_count(ch2_gbf[[name]])
+fmt_target <- function(name) format_count(ch2_targets[[name]])
+fmt_rel <- function(name) format_count(ch2_rel[[name]])
+fmt_nexus <- function(name) format_count(ch2_nexus[[name]])
+
+render_mermaid(
+  file.path("figures", "chapter2.mmd"),
+  c(
+    GBF_Urban = fmt_gbf("GBF-1 - Urban"),
+    GBF_Rural = fmt_gbf("GBF-1 - Rural"),
+    GBF_Fresh = fmt_gbf("GBF-1 - Freshwater"),
+    GBF_Marine = fmt_gbf("GBF-1 - Marine"),
+    GBF_Restore = fmt_gbf("GBF - 2 (Ecosystem restoration)"),
+    T3 = fmt_target("Target 3 (Protected areas / conservation coverage)"),
+    T4 = fmt_target("Target 4 (Species extinction & genetic diversity)"),
+    T5 = fmt_target("Target 5 (Wild species trade & use)"),
+    T6 = fmt_target("Target 6 (Invasive alien species)"),
+    T7 = fmt_target("Target 7 (Pollution)"),
+    T8 = fmt_target("Target 8 (Climate change & resilience)"),
+    T9 = fmt_target("Target 9 (Wild species management & use)"),
+    T10 = fmt_target(
+      "Target 10 (Sustainability in agriculture, aquaculture, forestry & fisheries)"
+    ),
+    T11 = fmt_target(
+      "Target 11 (Nature\u2019s contributions to people / ecosystem services)"
+    ),
+    T12 = fmt_target("Target 12 (Green & blue spaces, urban planning)"),
+    T13 = fmt_target("Target 13 (Genetic resources & benefit sharing)"),
+    T14 = fmt_target("Target 14 (Biodiversity integration in decision-making)"),
+    T15 = fmt_target(
+      "Target 15 (Business & financial institutions disclosure & risk)"
+    ),
+    T16 = fmt_target("Target 16 (Sustainable consumption)"),
+    T17 = fmt_target("Target 17 (Biosafety)"),
+    T18 = fmt_target("Target 18 (Harmful incentives / subsidies)"),
+    T19 = fmt_target("Target 19 (Finance mobilisation)"),
+    T20 = fmt_target("Target 20 (Capacity building, technology & cooperation)"),
+    T21 = fmt_target("Target 21 (Data, knowledge & monitoring)"),
+    T22 = fmt_target("Target 22 (Participation & inclusion)"),
+    T23 = fmt_target("Target 23 (Gender equality)"),
+    REL = fmt_rel("Set Related"),
+    Nexus_Water = fmt_nexus("Water"),
+    Nexus_Food = fmt_nexus("Food"),
+    Nexus_Health = fmt_nexus("Health"),
+    Nexus_Climate = fmt_nexus("Climate")
+  )
+)
+```
+
+### Chapter 3
+
+```{r}
+#| label: chapter_3_st_hits
+
+ch3_hits <- readRDS(file.path(params$chapter_3, "st_hits.rds"))
+
+ch3_counts <- setNames(ch3_hits$count, rownames(ch3_hits))
+
+ch3_hits |>
+  dplyr::mutate(count = format_count(count)) |>
+  knitr::kable(
+    col.names = c("Count"),
+    align = "r"
+  )
+```
+
+```{r}
+#| label: chapter_3_mermaid
+#| results: 'asis'
+
+render_mermaid(
+  file.path("figures", "chapter3.mmd"),
+  c(
+    C3_1 = format_count(ch3_counts[["Set 1"]]),
+    C3_2 = format_count(ch3_counts[["Set 2"]]),
+    C3_3 = format_count(ch3_counts[["Set 3"]]),
+    C3_4 = format_count(ch3_counts[["Set 4"]]),
+    C3_5 = format_count(ch3_counts[["Set 5"]]),
+    C3_6 = format_count(ch3_counts[["Set 6"]]),
+    C3_7 = format_count(ch3_counts[["Set 7"]]),
+    C3_8 = format_count(ch3_counts[["Set 8"]]),
+    C3_9 = format_count(ch3_counts[["Set 9"]]),
+    C3_10 = format_count(ch3_counts[["Set 10"]])
+  )
+)
+```
+
+### Chapter 4
+
+```{r}
+#| label: chapter_4_st_hits
+
+ch4_hits <- readRDS(file.path(params$chapter_4, "st_hits.rds"))
+
+ch4_counts <- setNames(ch4_hits$count, rownames(ch4_hits))
+
+ch4_hits |>
+  dplyr::mutate(count = format_count(count)) |>
+  knitr::kable(
+    col.names = c("Count"),
+    align = "r"
+  )
+```
+
+```{r}
+#| label: chapter_4_mermaid
+#| results: 'asis'
+
+render_mermaid(
+  file.path("figures", "chapter4.mmd"),
+  c(
+    C4_1 = format_count(ch4_counts[["Set 1"]]),
+    C4_2 = format_count(ch4_counts[["Set 2"]]),
+    C4_3 = format_count(ch4_counts[["Set 3"]]),
+    C4_4 = format_count(ch4_counts[["Set 4"]]),
+    C4_5 = format_count(ch4_counts[["Set 5"]]),
+    C4_6 = format_count(ch4_counts[["Set 6"]]),
+    C4_7 = format_count(ch4_counts[["Set 7"]]),
+    C4_8 = format_count(ch4_counts[["Set 8"]])
+  )
+)
+```
+
+### Chapter 5
+
+```{r}
+#| label: chapter_5_st_hits
+
+ch5_hits <- readRDS(file.path(params$chapter_5, "st_hits.rds"))
+
+ch5_counts <- lapply(ch5_hits, function(df) {
+  setNames(df$count, rownames(df))
+})
+
+do.call(
+  rbind,
+  lapply(names(ch5_hits), function(sect_nm) {
+    df <- ch5_hits[[sect_nm]]
+    df$section <- sect_nm
+    df$set <- rownames(df)
+    rownames(df) <- NULL
+    df[,
+      c("section", "set", setdiff(names(df), c("section", "set"))),
+      drop = FALSE
+    ]
+  })
+) |>
+  dplyr::mutate(
+    count = format_count(count)
   ) |>
   knitr::kable(
     col.names = c("Section", "Set", "Count"),
@@ -1510,15 +1785,76 @@ do.call(
 
 ```
 
+```{r}
+#| label: chapter_5_mermaid
+#| results: 'asis'
+
+fmt_ch5 <- function(section, set) {
+  format_count(ch5_counts[[section]][[set]])
+}
+
+render_mermaid(
+  file.path("figures", "chapter5.mmd"),
+  c(
+    C5_1 = fmt_ch5("Sections 1 and 2", "Set 1"),
+    C5_2 = fmt_ch5("Sections 1 and 2", "Set 2"),
+    C5_3 = fmt_ch5("Sections 1 and 2", "Set 3"),
+    C5_4 = fmt_ch5("Sections 1 and 2", "Set 4"),
+    C5_5 = fmt_ch5("Sections 1 and 2", "Set 5"),
+    C5_3a = fmt_ch5("Section 3", "Set 1"),
+    C5_3b = fmt_ch5("Section 3", "Set 2"),
+    C5_3c = fmt_ch5("Section 3", "Set 3"),
+    C5_4a = fmt_ch5("Section 4", "Set 1"),
+    C5_4b = fmt_ch5("Section 4", "Set 2"),
+    C5_4c = fmt_ch5("Section 4", "Set 3"),
+    C5_5a = fmt_ch5("Section 5", "Set 1"),
+    C5_5b = fmt_ch5("Section 5", "Set 2"),
+    C5_5c = fmt_ch5("Section 5", "Set 3"),
+    C5_5d = fmt_ch5("Section 5", "Set 4"),
+    C5_6a = fmt_ch5("Section 6", "Set 1"),
+    C5_6b = fmt_ch5("Section 6", "Set 2"),
+    C5_6c = fmt_ch5("Section 6", "Set 3"),
+    C5_6d = fmt_ch5("Section 6", "Set 4"),
+    CC1 = fmt_ch5("Cross-cutting sets", "Set 1"),
+    CC2 = fmt_ch5("Cross-cutting sets", "Set 2")
+  )
+)
+```
+
 ### Chapter 6
 
 ```{r}
 #| label: chapter_6_st_hits
 
-readRDS(file.path(params$chapter_6, "st_hits.rds")) |>
-  base::format(big.mark = ",") |>
+ch6_hits <- readRDS(file.path(params$chapter_6, "st_hits.rds"))
+
+ch6_counts <- setNames(ch6_hits$count, rownames(ch6_hits))
+
+ch6_hits |>
+  dplyr::mutate(count = format_count(count)) |>
   knitr::kable(
     col.names = c("Count"),
     align = "r"
   )
+```
+
+```{r}
+#| label: chapter_6_mermaid
+#| results: 'asis'
+
+render_mermaid(
+  file.path("figures", "chapter6.mmd"),
+  c(
+    C6_1 = format_count(ch6_counts[["Set 1"]]),
+    C6_2 = format_count(ch6_counts[["Set 2"]]),
+    C6_3 = format_count(ch6_counts[["Set 3"]]),
+    C6_4 = format_count(ch6_counts[["Set 4"]]),
+    C6_5 = format_count(ch6_counts[["Set 5"]]),
+    C6_6 = format_count(ch6_counts[["Set 6"]]),
+    C6_7 = format_count(ch6_counts[["Set 7"]]),
+    C6_8 = format_count(sum(ch6_counts[c("Set 8.1", "Set 8.2")], na.rm = TRUE)),
+    C6_9 = format_count(ch6_counts[["Set 9"]]),
+    C6_10 = format_count(ch6_counts[["Set 10"]])
+  )
+)
 ```

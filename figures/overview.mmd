@@ -2,22 +2,25 @@
 flowchart TD
     Start([Start literature search]) --> SPC["<u><span style='color:#1a0dab;'>spc_corpus.yaml<br/>Assemble base SPC corpus</span></u>"]
     click SPC "./input/search_terms/spc_corpus.yaml" "Open spc_corpus.yaml"
-    SPC --> SPC_list["spc keyword set<br/>(planning & connectivity terms)"]
-    SPC --> NATURE_list["nature keyword set<br/>(environmental context terms)"]
-    SPC_list --> BaseQuery["Level 1 query<br/>spc terms AND nature dictionary"]
+    SPC --> SPC_list["spc keyword set<br/>(planning & connectivity terms)<br/>(n = <<SPC_LIST>>)"
+]
+    SPC --> NATURE_list["nature keyword set<br/>(environmental context terms)<br/>(n = <<NATURE_LIST>>)"
+]
+    SPC_list --> BaseQuery["Level 1 query<br/>spc terms AND nature dictionary<br/>(n = <<BASE_QUERY>>)"
+]
     NATURE_list --> BaseQuery
 
     BaseQuery --> ChapterSelect{Apply chapter / theme refinements}
 
     ChapterSelect --> CH1["<u><span style='color:#1a0dab;'>Chapter 1<br/>chapter_1.yaml<br/>Governance & planning principles</span></u>"]
     click CH1 "./input/search_terms/chapter_1.yaml" "Open chapter_1.yaml"
-    ChapterSelect --> CH2["<u><span style='color:#1a0dab;'>Chapter 2<br/>chapter_2.yaml + chapter_2_add.yaml + chapter_2_sdg.yaml<br/>GBF targets, nexus themes, SDGs</span></u>"]
+    ChapterSelect --> CH2["<u><span style='color:#1a0dab;'>Chapter 2<br/>chapter_2.yaml<br/>GBF targets, nexus themes, SDGs</span></u>"]
     click CH2 "./input/search_terms/chapter_2.yaml" "Open chapter_2.yaml"
     ChapterSelect --> CH3["<u><span style='color:#1a0dab;'>Chapter 3<br/>chapter_3.yaml<br/>Restoration & conservation planning</span></u>"]
     click CH3 "./input/search_terms/chapter_3.yaml" "Open chapter_3.yaml"
     ChapterSelect --> CH4["<u><span style='color:#1a0dab;'>Chapter 4<br/>chapter_4.yaml<br/>Connectivity evidence & metrics</span></u>"]
     click CH4 "./input/search_terms/chapter_4.yaml" "Open chapter_4.yaml"
-    ChapterSelect --> CH5["<u><span style='color:#1a0dab;'>Chapter 5<br/>chapter_5_* files<br/>Foresight & futures (sections, themes, cross-cutting)</span></u>"]
+    ChapterSelect --> CH5["<u><span style='color:#1a0dab;'>Chapter 5<br/>chapter_5.yaml<br/>Foresight & futures (sections, themes, cross-cutting)</span></u>"]
     click CH5 "./input/search_terms/Chapter_5_1_2.yaml" "Open Chapter 5 search terms"
     ChapterSelect --> CH6["<u><span style='color:#1a0dab;'>Chapter 6<br/>chapter_6.yaml (+ chapter_6_r2.yaml optional)<br/>Enabling environment</span></u>"]
     click CH6 "./input/search_terms/chapter_6.yaml" "Open chapter_6.yaml"

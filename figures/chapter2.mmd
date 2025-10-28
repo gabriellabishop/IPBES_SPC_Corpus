@@ -5,39 +5,41 @@ flowchart LR
 
     subgraph L1_GBF["GBF contexts & targets"]
         direction TB
-        GBF_Urban["GBF-1 Urban"]
-        GBF_Rural["GBF-1 Rural"]
-        GBF_Fresh["GBF-1 Freshwater"]
-        GBF_Marine["GBF-1 Marine"]
-        GBF_Restore["GBF-2 Ecosystem restoration"]
-        T3["Target 3"]
-        T4["Target 4"]
-        T5["Target 5"]
-        T6["Target 6"]
-        T7["Target 7"]
-        T8["Target 8"]
-        T9["Target 9"]
-        T10["Target 10"]
-        T11["Target 11"]
-        T12["Target 12"]
-        T13["Target 13"]
-        T14["Target 14"]
-        T15["Target 15"]
-        T16["Target 16"]
-        T17["Target 17"]
-        T18["Target 18"]
-        T19["Target 19"]
-        T20["Target 20"]
-        T21["Target 21"]
-        T22["Target 22"]
-        T23["Target 23"]
-        REL["Spatial Planning Related"]
+        GBF_Urban["GBF-1 Urban<br/>(n = <<GBF_Urban>>)"]
+        GBF_Rural["GBF-1 Rural<br/>(n = <<GBF_Rural>>)"]
+        GBF_Fresh["GBF-1 Freshwater<br/>(n = <<GBF_Fresh>>)"]
+        GBF_Marine["GBF-1 Marine<br/>(n = <<GBF_Marine>>)"]
+        GBF_Restore["GBF-2 Ecosystem restoration<br/>(n = <<GBF_Restore>>)"]
     end
     Ch2L2 --> GBF_Urban
     Ch2L2 --> GBF_Rural
     Ch2L2 --> GBF_Fresh
     Ch2L2 --> GBF_Marine
     Ch2L2 --> GBF_Restore
+
+    subgraph L1_TARGET["GBF contexts & targets"]
+        T3["Target 3<br/>(n = <<T3>>)"]
+        T4["Target 4<br/>(n = <<T4>>)"]
+        T5["Target 5<br/>(n = <<T5>>)"]
+        T6["Target 6<br/>(n = <<T6>>)"]
+        T7["Target 7<br/>(n = <<T7>>)"]
+        T8["Target 8<br/>(n = <<T8>>)"]
+        T9["Target 9<br/>(n = <<T9>>)"]
+        T10["Target 10<br/>(n = <<T10>>)"]
+        T11["Target 11<br/>(n = <<T11>>)"]
+        T12["Target 12<br/>(n = <<T12>>)"]
+        T13["Target 13<br/>(n = <<T13>>)"]
+        T14["Target 14<br/>(n = <<T14>>)"]
+        T15["Target 15<br/>(n = <<T15>>)"]
+        T16["Target 16<br/>(n = <<T16>>)"]
+        T17["Target 17<br/>(n = <<T17>>)"]
+        T18["Target 18<br/>(n = <<T18>>)"]
+        T19["Target 19<br/>(n = <<T19>>)"]
+        T20["Target 20<br/>(n = <<T20>>)"]
+        T21["Target 21<br/>(n = <<T21>>)"]
+        T22["Target 22<br/>(n = <<T22>>)"]
+        T23["Target 23<br/>(n = <<T23>>)"]
+    end
     Ch2L2 --> T3
     Ch2L2 --> T4
     Ch2L2 --> T5
@@ -59,24 +61,27 @@ flowchart LR
     Ch2L2 --> T21
     Ch2L2 --> T22
     Ch2L2 --> T23
+
+    subgraph L1_REL["Spatial Planning Related"]
+        REL["Spatial Planning Related<br/>(n = <<REL>>)"]
+    end
     Ch2L2 --> REL
 
-    Start --> Ch2L3["<u><span style='color:#1a0dab;'>chapter_2_add.yaml<br/>Level 3 nexus themes</span></u>"]
-    click Ch2L3 "../search_terms/chapter_2_add.yaml" "Open chapter_2_add.yaml"
-    subgraph L1_NexusSets["Nexus add-ons"]
+    subgraph L1_NexusSets["Nexus"]
         direction TB
-        Nexus_Water["Water"]
-        Nexus_Food["Food"]
-        Nexus_Health["Health"]
-        Nexus_Climate["Climate"]
+        Nexus_Water["Water<br/>(n = <<Nexus_Water>>)"]
+        Nexus_Food["Food<br/>(n = <<Nexus_Food>>)"]
+        Nexus_Health["Health<br/>(n = <<Nexus_Health>>)"]
+        Nexus_Climate["Climate<br/>(n = <<Nexus_Climate>>)"]
     end
-    Ch2L3 --> Nexus_Water
-    Ch2L3 --> Nexus_Food
-    Ch2L3 --> Nexus_Health
-    Ch2L3 --> Nexus_Climate
+    Ch2L2 --> Nexus_Water
+    Ch2L2 --> Nexus_Food
+    Ch2L2 --> Nexus_Health
+    Ch2L2 --> Nexus_Climate
 
     L1_GBF --> Ch2L4["<u><span style='color:#1a0dab;'>chapter_2_sdg.yaml<br/>Level 4 SDG filters</span></u>"]
     L1_NexusSets --> Ch2L4
+    L1_REL --> Ch2L4
     click Ch2L4 "../search_terms/chapter_2_sdg.yaml" "Open chapter_2_sdg.yaml"
     subgraph SDGSets["SDG goal filters"]
         direction TB
@@ -115,5 +120,3 @@ flowchart LR
     Ch2L4 --> SDG15
     Ch2L4 --> SDG16
     Ch2L4 --> SDG17
-
-

@@ -1,15 +1,15 @@
 %%{init: {'flowchart': {'htmlLabels': true}}}%%
 flowchart LR
-    Start([SPC Corpus]) --> Ch5L2["<u><span style='color:#1a0dab;'>Chapter_5_1_2.yaml<br/>Level 2 foresight framing</span></u>"]
-    click Ch5L2 "./input/search_terms/Chapter_5_1_2.yaml" "Open Chapter_5_1_2.yaml"
+    Start([SPC Corpus]) --> Ch5L2["<u><span style='color:#1a0dab;'>chapter_5.yaml<br/>Level 2 foresight framing</span></u>"]
+    click Ch5L2 "./input/search_terms/chapter_5.yaml" "Open chapter_5.yaml"
 
     subgraph L2Sets["Section 5.1–5.2 searches"]
         direction TB
-        C5_1["Set 1:<br/>Future + project*/predict*/scenario"]
-        C5_2["Set 2:<br/>Future + pathway*/narrative*/vision*"]
-        C5_3["Set 3:<br/>Future-proof*/anticipat*/scenario planning"]
-        C5_4["Set 4:<br/>Foresight*/backcasting/simulat*/trend*"]
-        C5_5["Set 5:<br/>Model* AND scenario"]
+        C5_1["Set 1:<br/>Future + project*/predict*/scenario<br/>(n = <<C5_1>>)"]
+        C5_2["Set 2:<br/>Future + pathway*/narrative*/vision*<br/>(n = <<C5_2>>)"]
+        C5_3["Set 3:<br/>Future-proof*/anticipat*/scenario planning<br/>(n = <<C5_3>>)"]
+        C5_4["Set 4:<br/>Foresight*/backcasting/simulat*/trend*<br/>(n = <<C5_4>>)"]
+        C5_5["Set 5:<br/>Model* AND scenario<br/>(n = <<C5_5>>)"]
     end
     Ch5L2 --> C5_1
     Ch5L2 --> C5_2
@@ -17,64 +17,54 @@ flowchart LR
     Ch5L2 --> C5_4
     Ch5L2 --> C5_5
 
-    Start --> Ch5L3["<u><span style='color:#1a0dab;'>chapter_5_3.yaml<br/>Level 3 – Drivers of change</span></u>"]
-    click Ch5L3 "./input/search_terms/chapter_5_3.yaml" "Open chapter_5_3.yaml"
     subgraph L3Sets["Section 5.3 searches"]
         direction TB
-        C5_3a["Set 1:<br/>Drivers of change"]
-        C5_3b["Set 2:<br/>Driver modelling approaches"]
-        C5_3c["Set 3:<br/>Driver gaps"]
+        C5_3a["Set 1:<br/>Drivers of change<br/>(n = <<C5_3a>>)"]
+        C5_3b["Set 2:<br/>Driver modelling approaches<br/>(n = <<C5_3b>>)"]
+        C5_3c["Set 3:<br/>Driver gaps<br/>(n = <<C5_3c>>)"]
     end
-    Ch5L3 --> C5_3a
-    Ch5L3 --> C5_3b
-    Ch5L3 --> C5_3c
+    Ch5L2 --> C5_3a
+    Ch5L2 --> C5_3b
+    Ch5L2 --> C5_3c
 
-    Start --> Ch5L4["<u><span style='color:#1a0dab;'>chapter_5_4.yaml<br/>Level 4 – Synergies & trade-offs</span></u>"]
-    click Ch5L4 "./input/search_terms/chapter_5_4.yaml" "Open chapter_5_4.yaml"
     subgraph L4Sets["Section 5.4 searches"]
         direction TB
-        C5_4a["Set 1:<br/>Interactions (synergy/trade-off/nexus)"]
-        C5_4b["Set 2:<br/>Response options (integrated planning / NbS)"]
-        C5_4c["Set 3:<br/>Cross-scale synergy & trade-off terms"]
+        C5_4a["Set 1:<br/>Interactions (synergy/trade-off/nexus)<br/>(n = <<C5_4a>>)"]
+        C5_4b["Set 2:<br/>Response options (integrated planning / NbS)<br/>(n = <<C5_4b>>)"]
+        C5_4c["Set 3:<br/>Cross-scale synergy & trade-off terms<br/>(n = <<C5_4c>>)"]
     end
-    Ch5L4 --> C5_4a
-    Ch5L4 --> C5_4b
-    Ch5L4 --> C5_4c
+    Ch5L2 --> C5_4a
+    Ch5L2 --> C5_4b
+    Ch5L2 --> C5_4c
 
-    Start --> Ch5L5["<u><span style='color:#1a0dab;'>chapter_5_5.yaml<br/>Level 5 – Uncertainty & risk</span></u>"]
-    click Ch5L5 "./input/search_terms/chapter_5_5.yaml" "Open chapter_5_5.yaml"
     subgraph L5Sets["Section 5.5 searches"]
         direction TB
-        C5_5a["Set 1:<br/>Adaptive / transformative management"]
-        C5_5b["Set 2:<br/>Uncertainty quantification"]
-        C5_5c["Set 3:<br/>Tipping points & thresholds"]
-        C5_5d["Set 4:<br/>Cascading risks & precaution"]
+        C5_5a["Set 1:<br/>Adaptive / transformative management<br/>(n = <<C5_5a>>)"]
+        C5_5b["Set 2:<br/>Uncertainty quantification<br/>(n = <<C5_5b>>)"]
+        C5_5c["Set 3:<br/>Tipping points & thresholds<br/>(n = <<C5_5c>>)"]
+        C5_5d["Set 4:<br/>Cascading risks & precaution<br/>(n = <<C5_5d>>)"]
     end
-    Ch5L5 --> C5_5a
-    Ch5L5 --> C5_5b
-    Ch5L5 --> C5_5c
-    Ch5L5 --> C5_5d
+    Ch5L2 --> C5_5a
+    Ch5L2 --> C5_5b
+    Ch5L2 --> C5_5c
+    Ch5L2 --> C5_5d
 
-    Start --> Ch5L6["<u><span style='color:#1a0dab;'>chapter_5_6.yaml<br/>Level 6 – Knowledge to action</span></u>"]
-    click Ch5L6 "./input/search_terms/chapter_5_6.yaml" "Open chapter_5_6.yaml"
     subgraph L6Sets["Section 5.6 searches"]
         direction TB
-        C5_6a["Set 1:<br/>Science-policy-practice pathways"]
-        C5_6b["Set 2:<br/>ILK integration & community planning"]
-        C5_6c["Set 3:<br/>Enabling factors & coordination"]
-        C5_6d["Set 4:<br/>Shocks, surprises, uncertainties"]
+        C5_6a["Set 1:<br/>Science-policy-practice pathways<br/>(n = <<C5_6a>>)"]
+        C5_6b["Set 2:<br/>ILK integration & community planning<br/>(n = <<C5_6b>>)"]
+        C5_6c["Set 3:<br/>Enabling factors & coordination<br/>(n = <<C5_6c>>)"]
+        C5_6d["Set 4:<br/>Shocks, surprises, uncertainties<br/>(n = <<C5_6d>>)"]
     end
-    Ch5L6 --> C5_6a
-    Ch5L6 --> C5_6b
-    Ch5L6 --> C5_6c
-    Ch5L6 --> C5_6d
+    Ch5L2 --> C5_6a
+    Ch5L2 --> C5_6b
+    Ch5L2 --> C5_6c
+    Ch5L2 --> C5_6d
 
-    Start --> Ch5CC["<u><span style='color:#1a0dab;'>chapter_5_cc.yaml<br/>Cross-cutting themes</span></u>"]
-    click Ch5CC "./input/search_terms/chapter_5_cc.yaml" "Open chapter_5_cc.yaml"
     subgraph CCSets["Cross-cutting searches"]
         direction TB
-        CC1["Set 1:<br/>Scales & telecoupling"]
-        CC2["Set 2:<br/>Co-production & inclusion"]
+        CC1["Set 1:<br/>Scales & telecoupling<br/>(n = <<CC1>>)"]
+        CC2["Set 2:<br/>Co-production & inclusion<br/>(n = <<CC2>>)"]
     end
-    Ch5CC --> CC1
-    Ch5CC --> CC2
+    Ch5L2 --> CC1
+    Ch5L2 --> CC2
