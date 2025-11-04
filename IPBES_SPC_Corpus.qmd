@@ -794,7 +794,8 @@ if (!file.exists(fn)) {
       names_from = source,
       values_from = count,
       names_prefix = "count_",
-      values_fill = 0
+      values_fn = list(count = sum),
+      values_fill = list(count = 0)
     ) |>
     dplyr::select(
       language,
@@ -803,7 +804,7 @@ if (!file.exists(fn)) {
       count_nature,
       count_spcc
     ) |>
-    dplyr::arrange(language) |>
+    dplyr::arrange(desc(count_openalex)) |>
     saveRDS(file = fn)
 }
 ```
@@ -859,7 +860,8 @@ if (!file.exists(fn)) {
       names_from = source,
       values_from = count,
       names_prefix = "count_",
-      values_fill = 0
+      values_fn = list(count = sum),
+      values_fill = list(count = 0)
     ) |>
     dplyr::select(
       year,
