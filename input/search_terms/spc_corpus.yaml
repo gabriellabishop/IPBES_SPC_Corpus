@@ -1,6 +1,6 @@
 # SPC Corpus
 # spc_corpus.yaml
-# v 5.0
+# v 6.0
 spc:
   - '(adaptive AND (management OR planning)) OR'
   - '(animal AND (migration OR movement)) OR'
@@ -24,7 +24,7 @@ spc:
   - 'IPBES OR'
   - '(("key biodiversity" OR protected OR "remote ocean") AND areas) OR'
   - '(land AND (allocation OR governance OR system)) OR'
-  - '("land use" AND (decision OR planning OR governance OR management OR model OR scenario OR trade-offs OR tradeoffs)) OR'
+  - '(("land use" OR "sea use" OR marine) AND (decision OR planning OR governance OR management OR model OR scenario OR trade-offs OR tradeoffs)) OR'
   - '(landscape AND (complexity OR planning OR governance OR management OR "ecological planning")) OR'
   - '"multi-criteria decision analysis" OR'
   - '(nature AND ("based solutions" OR futures)) OR'
@@ -39,17 +39,16 @@ spc:
   - '"systems integration" OR'
   - 'zoning'
 nature:
-  - '"agricultural land" OR'
+  - '(("agricultural" OR arable) AND "land") OR'
   - '"agro-forest" OR'
   - 'agroforest OR'
-  - '"arable land" OR'
   - 'biodiversity OR'
   - 'bioeconomy OR'
   - 'biosphere OR'
   - 'bog OR'
   - 'chaparral OR'
   - 'coast OR'
-  - '"coastal waters" OR'
+  - '"coastal" OR'
   - 'conservation OR'
   - '"coupled system" OR'
   - 'desert OR'
@@ -83,7 +82,8 @@ nature:
   - 'peatland OR'
   - 'planet OR'
   - 'plantation OR'
-  - '"protected areas" OR'
+  - '(("protected" OR conserved) AND "areas") OR'
+  - 'territories OR'
   - '"resource system" OR'
   - 'restoration OR'
   - 'river OR'
