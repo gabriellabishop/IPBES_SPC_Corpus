@@ -3,16 +3,16 @@
 # v1
 
 "Set 1":
-  - '(("indigenous" AND ("knowledge" OR "perspectives" OR "governance" OR "rights" OR "values" OR "practices" OR "land" OR "territory")) OR "local knowledge" OR "biocultural" OR "customary" OR ("diverse" AND ("knowledge systems" OR "world views" OR "worldviews"))) AND'
-  - '("planning" OR "governance" OR "policy" OR "tenure" OR "rights") AND'
-  - '("just" OR "inclusive" OR "fair" OR "effective" OR "equity" OR "equitable")'
+  - '((indigenous AND (knowledge OR perspectives OR governance OR rights OR values OR practices OR land OR territory)) OR "local knowledge" OR biocultural OR customary OR (diverse AND ("knowledge systems" OR "world views" OR worldviews))) AND'
+  - '(planning OR governance OR policy OR tenure OR rights) AND'
+  - '(just OR inclusive OR fair OR effective OR equity OR equitable)'
 
 "Set 2":
-  - '("multi-level" OR "integrated" OR "accountable" OR "customary" OR "diverse" OR "context-dependent" OR "cross-scale" OR "polycentric" OR "pluralism" OR "adaptive") AND'
-  - '("governance" OR "policy" OR "framework") AND'
-  - '("spatial planning" OR "marine planning" OR "management" OR "land-use" OR "sea-use")'
+  - '("multi-level" OR integrated OR accountable OR customary OR diverse OR "context-dependent" OR "cross-scale" OR polycentric OR pluralism OR adaptive) AND'
+  - '(governance OR policy OR framework) AND'
+  - '("spatial planning" OR "marine planning" OR management OR "land-use" OR "sea-use")'
 
 "Set 3":
-  - '("participatory" OR "community" OR "co-design" OR "stakeholder" OR "plurality" OR "tailored" OR "different contexts" OR "transformative" OR "adaptive" OR "place-based" OR "integrated" OR "multifunctional" OR "diverse") AND'
-  - '("approach" OR "strategy" OR "practice" OR "plan" OR "policy" OR "framework" OR "instrument") AND'
-  - '("landscape" OR "seascape" OR "watershed" OR "ecosystem" OR "area" OR "region" OR "land-sea" OR "connectivity" OR "marine" OR "ocean" OR "maritime")'
+  - '(participatory OR community OR "co-design" OR stakeholder OR plurality OR tailored OR "different contexts" OR transformative OR adaptive OR "place-based" OR integrated OR multifunctional OR diverse) AND'
+  - '(approach OR strategy OR practice OR plan OR policy OR framework OR instrument) AND'
+  - '(landscape OR seascape OR watershed OR ecosystem OR area OR region OR "land-sea" OR connectivity OR marine OR ocean OR maritime)'

@@ -4,17 +4,17 @@
 
 Set 1:
 - '(((protected OR conserved) AND areas) OR "other effective area-based conservation measures" OR "indigenous and traditional territories") AND'
-- '((national AND ("Biodiversity Strategy" OR target)) OR "downscaling") AND'
-- '("case study" OR "best practice" OR "planning" OR "spatial prioritization") AND'
-- '("regional" OR "national" OR "subnational" OR "mountain" OR "marine" OR (Indigenous AND ("land" OR "protected areas")) OR transboundary)'
+- '((national AND ("Biodiversity Strategy" OR target)) OR downscaling) AND'
+- '("case study" OR "best practice" OR planning OR "spatial prioritization") AND'
+- '(regional OR national OR subnational OR mountain OR marine OR (Indigenous AND (land OR "protected areas")) OR transboundary)'
 
 Set 2:
-- '"restoration" AND'
-- '("inclusivity" OR "participation" OR "co-management" OR "Indigenous knowledge" OR "traditional ecological knowledge" OR "ILK" OR "local knowledge" OR "community-based restoration" OR "stakeholder engagement" OR "social equity" OR "justice" OR "gender inclusion")'
+- 'restoration AND'
+- '(inclusivity OR participation OR "co-management" OR "Indigenous knowledge" OR "traditional ecological knowledge" OR ILK OR "local knowledge" OR "community-based restoration" OR "stakeholder engagement" OR "social equity" OR justice OR "gender inclusion")'
 
 Set 3:
 - '("restoration planning" OR "ecological restoration") AND'
-- '("ecosystem integrity" OR "ecological connectivity" OR "corridors" OR "migration pathways" OR "climate resilience" OR "participatory approaches")'
+- '("ecosystem integrity" OR "ecological connectivity" OR corridors OR "migration pathways" OR "climate resilience" OR "participatory approaches")'
 
 Set 4:
 - '("spatial conservation planning" OR "landscape conservation planning" OR "conservation gap analysis" OR "systematic conservation planning" OR "ecoregion conservation" OR "transboundary conservation planning")'
@@ -37,6 +37,6 @@ Set 9:
 
 Set 10:
 - '"adaptive management" AND'
-- '("global change" OR "climate change" OR "land use change" OR "sea use change" OR "invasive species" OR "overexploitation" OR "pollution") AND'
+- '("global change" OR "climate change" OR "land use change" OR "sea use change" OR "invasive species" OR overexploitation OR pollution) AND'
 - '"spatial planning"'
 
