@@ -169,6 +169,21 @@ lapply(
   source
 )
 
+st <- local(
+  {
+    e <- new.env(parent = emptyenv())
+    e$spc <- params$search_terms$spc_corpus$spc |>
+      paste0(collapse = " ") |>
+      st_compact()
+    e$nature <- params$search_terms$spc_corpus$nature |>
+      paste0(collapse = " ") |>
+      st_compact()
+    e$spcc <- paste0("(", e$spc, ") AND (", e$nature, ")") |>
+      st_compact()
+    e
+  }
+)
+
 dir.create(params$output_dir, recursive = TRUE, showWarnings = FALSE)
 dir.create(params$keyworks, recursive = TRUE, showWarnings = FALSE)
 dir.create(params$corpus, recursive = TRUE, showWarnings = FALSE)
@@ -179,35 +194,6 @@ dir.create(params$chapter_4, recursive = TRUE, showWarnings = FALSE)
 dir.create(params$chapter_5, recursive = TRUE, showWarnings = FALSE)
 dir.create(params$chapter_6, recursive = TRUE, showWarnings = FALSE)
 ```
-
-```{r}
-#| label: mermaid_helpers
-#| include: false
-
-format_count <- function(x) {
-  ifelse(
-    is.na(x),
-    "NA",
-    format(x, big.mark = ",", trim = TRUE)
-  )
-}
-
-render_mermaid <- function(path, replacements) {
-  template <- readLines(path)
-  for (nm in names(replacements)) {
-    template <- gsub(
-      paste0("<<", nm, ">>"),
-      replacements[[nm]],
-      template,
-      fixed = TRUE
-    )
-  }
-  cat("```{mermaid}\n")
-  cat(paste(template, collapse = "\n"))
-  cat("\n```\n")
-}
-```
-
 
 <p align="center">
 `r sprintf("[![Version](https://img.shields.io/badge/DOI-%s-blue.svg)](#)", URLencode(rmarkdown::metadata$doi, reserved = TRUE))`
@@ -430,15 +416,15 @@ if (!file.exists(fn)) {
   result <- list(
     spc = assess_search_term_both(
       st = params$search_terms$spc_corpus$spc,
-      and_term = stcompact(params$search_terms$spc_corpus$spc_corpus$nature),
+      and_term = st_compact(params$search_terms$spc_corpus$spc_corpus$nature),
       types = params$types_filter,
       verbose = TRUE
     ),
     nature = assess_search_term_both(
       st = params$search_terms$spc_corpus$nature,
-      and_term = stcompact(params$search_terms$spc_corpus$spc_corpus$spc),
+      and_term = st_compact(params$search_terms$spc_corpus$spc_corpus$spc),
       types = params$types_filter,
-      verbose = FALSE
+      verbose = TRUE
     )
   ) |>
     saveRDS(fn)
@@ -462,14 +448,6 @@ The other columns are as returned by the OpenAlex API.
 ```{r}
 #| label: get_key_works_prep
 #|
-
-st <- list(
-  spc = params$search_terms$spc_corpus$spc |>
-    paste0(collapse = " "),
-  nature = params$search_terms$spc_corpus$nature |>
-    paste0(collapse = " ")
-)
-st$spcc <- paste0("(", st$spc, ") AND (", st$nature, ")")
 
 dois <- params$key_papers$goldstandard$DOI[
   params$key_papers$goldstandard$DOI != ""
@@ -699,14 +677,6 @@ The following counts are retrieved:
 
 fn <- file.path(params$corpus, "st_hits.rds")
 if (!file.exists(fn)) {
-  st <- list(
-    spc = params$search_terms$spc_corpus$spc |>
-      paste0(collapse = " "),
-    nature = params$search_terms$spc_corpus$nature |>
-      paste0(collapse = " ")
-  )
-  st$spcc <- paste0("(", st$spc, ") AND (", st$nature, ")")
-
   queries <- lapply(
     st,
     function(s) {
@@ -751,14 +721,6 @@ if (!file.exists(fn)) {
 
 fn <- file.path(params$corpus, "st_languages.rds")
 if (!file.exists(fn)) {
-  st <- list(
-    spc = params$search_terms$spc_corpus$spc |>
-      paste0(collapse = " "),
-    nature = params$search_terms$spc_corpus$nature |>
-      paste0(collapse = " ")
-  )
-  st$spcc <- paste0("(", st$spc, ") AND (", st$nature, ")")
-
   queries <- lapply(
     st,
     function(s) {
@@ -816,14 +778,6 @@ if (!file.exists(fn)) {
 
 fn <- file.path(params$corpus, "st_years.rds")
 if (!file.exists(fn)) {
-  st <- list(
-    spc = params$search_terms$spc_corpus$spc |>
-      paste0(collapse = " "),
-    nature = params$search_terms$spc_corpus$nature |>
-      paste0(collapse = " ")
-  )
-  st$spcc <- paste0("(", st$spc, ") AND (", st$nature, ")")
-
   queries <- lapply(
     st,
     function(s) {
@@ -885,176 +839,93 @@ if (!file.exists(fn)) {
 
 fn <- file.path(params$chapter_1, "st_hits.rds")
 if (!file.exists(fn)) {
-  spcc <- paste0(
-    "(",
-    stcompact(params$search_terms$spc_corpus$spc),
-    ") AND (",
-    stcompact(params$search_terms$spc_corpus$nature),
-    ")"
-  )
-  queries <- lapply(
-    params$search_terms$chapter_1,
-    function(s) {
-      openalexPro::pro_query(
-        title_and_abstract.search = paste0(
-          "(",
-          spcc,
-          ") AND (",
-          stcompact(s),
-          ")"
-        ),
-        type = params$types_filter,
-        from_publication_date = params$publication_date$from,
-        to_publication_date = params$publication_date$to
-      )
-    }
-  )
-
-  result <- pbapply::pblapply(
-    queries,
-    function(query) {
-      query |>
-        openalexR::oa_request(
-          count_only = TRUE,
-          verbose = TRUE
-        ) |>
-        unlist()
-    }
+  get_count_L1(
+    sets = params$search_terms$chapter_1,
+    types_filter = params$types_filter,
+    publication_year_from = params$publication_date$from,
+    publication_year_to = params$publication_date$to,
+    st_AND = st$spcc
   ) |>
-    do.call(what = cbind) |>
-    t() |>
-    as.data.frame() |>
-    dplyr::select(count)
-
-  rownames(result) <- names(queries)
-  saveRDS(result, file = fn)
+    saveRDS(file = fn)
 }
 ```
 
 ## Chapter 2
 
 ```{r}
-#| label: get_st_hits_chapter_2
+#| label: get_st_hits_chapter_2_L2
 
 fn <- file.path(params$chapter_2, "st_hits.rds")
 if (!file.exists(fn)) {
-  spcc <- paste0(
-    "(",
-    stcompact(params$search_terms$spc_corpus$spc),
-    ") AND (",
-    stcompact(params$search_terms$spc_corpus$nature),
-    ")"
+  # queries <- lapply(
+  #   params$search_terms$chapter_2,
+  #   function(section) {
+  #     lapply(
+  #       section,
+  #       function(s) {
+  #         openalexPro::pro_query(
+  #           title_and_abstract.search = paste0(
+  #             "(",
+  #             st$spcc,
+  #             ") AND (",
+  #             st_compact(s),
+  #             ")"
+  #           ),
+  #           type = params$types_filter,
+  #           from_publication_date = params$publication_date$from,
+  #           to_publication_date = params$publication_date$to
+  #         )
+  #       }
+  #     )
+  #   }
+  # )
+
+  # result <- lapply(
+  #   names(queries),
+  #   function(sect_nm) {
+  #     result <- lapply(
+  #       names(queries[[sect_nm]]),
+  #       function(nm) {
+  #         message("Retrieving ", sect_nm, " - ", nm, " ...")
+  #         result <- c(
+  #           count = NA_integer_,
+  #           db_response_time_ms = NA_integer_,
+  #           page = NA_integer_,
+  #           per_page = NA_integer_
+  #         )
+  #         try(
+  #           result <- queries[[sect_nm]][nm] |>
+  #             openalexR::oa_request(
+  #               count_only = TRUE,
+  #               verbose = TRUE
+  #             ) |>
+  #             unlist(),
+  #           silent = FALSE
+  #         )
+  #         return(result)
+  #       }
+  #     ) |>
+  #       do.call(what = cbind) |>
+  #       t() |>
+  #       as.data.frame() |>
+  #       dplyr::select(count)
+  #     browser()
+  #     rownames(result) <- names(queries[[sect_nm]])
+  #     return(result)
+  #   }
+  # )
+  # names(result) <- names(queries)
+
+  get_count_L2(
+    sets = params$search_terms$chapter_2,
+    types_filter = params$types_filter,
+    publication_year_from = params$publication_date$from,
+    publication_year_to = params$publication_date$to,
+    st_AND = st$spcc
   ) |>
-    stcompact()
-
-  queries <- lapply(
-    params$search_terms$chapter_2,
-    function(section) {
-      lapply(
-        section,
-        function(s) {
-          openalexPro::pro_query(
-            title_and_abstract.search = paste0(
-              "(",
-              spcc,
-              ") AND (",
-              stcompact(s),
-              ")"
-            ),
-            type = params$types_filter,
-            from_publication_date = params$publication_date$from,
-            to_publication_date = params$publication_date$to
-          )
-        }
-      )
-    }
-  )
-
-  result <- lapply(
-    names(queries),
-    function(sect_nm) {
-      result <- lapply(
-        names(queries[[sect_nm]]),
-        function(nm) {
-          message("Retrieving ", sect_nm, " - ", nm, " ...")
-          result <- c(
-            count = NA_integer_,
-            db_response_time_ms = NA_integer_,
-            page = NA_integer_,
-            per_page = NA_integer_
-          )
-          try(
-            result <- queries[[sect_nm]][nm] |>
-              openalexR::oa_request(
-                count_only = TRUE,
-                verbose = TRUE
-              ) |>
-              unlist(),
-            silent = FALSE
-          )
-          return(result)
-        }
-      ) |>
-        do.call(what = cbind) |>
-        t() |>
-        as.data.frame() |>
-        dplyr::select(count)
-      browser()
-      rownames(result) <- names(queries[[sect_nm]])
-      return(result)
-    }
-  )
-  names(result) <- names(queries)
-
-  saveRDS(result, file = fn)
+    saveRDS(file = fn)
 }
 
-# fn <- file.path(params$chapter_2, "st_hits.rds")
-# if (!file.exists(fn)) {
-#   spcc <- paste0(
-#     "(",
-#     stcompact(params$search_terms$spc_corpus$spc),
-#     ") AND (",
-#     stcompact(params$search_terms$spc_corpus$nature),
-#     ")"
-#   )
-#   queries <- lapply(
-#     params$search_terms$chapter_2,
-#     function(s) {
-#       openalexPro::pro_query(
-#         title_and_abstract.search = paste0(
-#           "(",
-#           spcc,
-#           ") AND (",
-#           stcompact(s),
-#           ")"
-#         ),
-#         type = params$types_filter,
-#         from_publication_date = params$publication_date$from,
-#         to_publication_date = params$publication_date$to
-#       )
-#     }
-#   )
-
-#   result <- pbapply::pblapply(
-#     queries,
-#     function(query) {
-#       query |>
-#         openalexR::oa_request(
-#           count_only = TRUE,
-#           verbose = TRUE
-#         ) |>
-#         unlist()
-#     }
-#   ) |>
-#     do.call(what = cbind) |>
-#     t() |>
-#     as.data.frame() |>
-#     dplyr::select(count)
-
-#   rownames(result) <- names(queries)
-#   saveRDS(result, file = fn)
-# }
 ```
 
 
@@ -1062,69 +933,17 @@ if (!file.exists(fn)) {
 
 ```{r}
 #| label: get_st_hits_chapter_3
-#| eval: true
 
 fn <- file.path(params$chapter_3, "st_hits.rds")
 if (!file.exists(fn)) {
-  spcc <- paste0(
-    "(",
-    stcompact(params$search_terms$spc_corpus$spc),
-    ") AND (",
-    stcompact(params$search_terms$spc_corpus$nature),
-    ")"
-  )
-  queries <- lapply(
-    params$search_terms$chapter_3,
-    function(s) {
-      result <- c(
-        count = NA_integer_,
-        db_response_time_ms = NA_integer_,
-        page = NA_integer_,
-        per_page = NA_integer_
-      )
-      try(
-        result <- openalexPro::pro_query(
-          title_and_abstract.search = paste0(
-            "(",
-            spcc,
-            ") AND (",
-            stcompact(s),
-            ")"
-          ),
-          type = params$types_filter,
-          from_publication_date = params$publication_date$from,
-          to_publication_date = params$publication_date$to
-        ),
-        silent = FALSE
-      )
-    }
-  )
-
-  result <- pbapply::pblapply(
-    queries,
-    function(query) {
-      result <- c(
-        count = NA_integer_,
-        db_response_time_ms = NA_integer_,
-        page = NA_integer_,
-        per_page = NA_integer_
-      )
-      try(
-        result <- query |>
-          openalexR::oa_request(
-            count_only = TRUE,
-            verbose = TRUE
-          ) |>
-          unlist()
-      )
-    }
+  get_count_L1(
+    sets = params$search_terms$chapter_3,
+    types_filter = params$types_filter,
+    publication_year_from = params$publication_date$from,
+    publication_year_to = params$publication_date$to,
+    st_AND = st$spcc
   ) |>
-    do.call(what = cbind) |>
-    t() |>
-    as.data.frame() |>
-    dplyr::select(count)
-  rownames(result) <- names(queries)
-  saveRDS(result, file = fn)
+    saveRDS(file = fn)
 }
 ```
 
@@ -1135,48 +954,14 @@ if (!file.exists(fn)) {
 
 fn <- file.path(params$chapter_4, "st_hits.rds")
 if (!file.exists(fn)) {
-  spcc <- paste0(
-    "(",
-    stcompact(params$search_terms$spc_corpus$spc),
-    ") AND (",
-    stcompact(params$search_terms$spc_corpus$nature),
-    ")"
-  )
-  queries <- lapply(
-    params$search_terms$chapter_4,
-    function(s) {
-      openalexPro::pro_query(
-        title_and_abstract.search = paste0(
-          "(",
-          spcc,
-          ") AND (",
-          stcompact(s),
-          ")"
-        ),
-        type = params$types_filter,
-        from_publication_date = params$publication_date$from,
-        to_publication_date = params$publication_date$to
-      )
-    }
-  )
-
-  result <- pbapply::pblapply(
-    queries,
-    function(query) {
-      query |>
-        openalexR::oa_request(
-          count_only = TRUE,
-          verbose = TRUE
-        ) |>
-        unlist()
-    }
+  get_count_L1(
+    sets = params$search_terms$chapter_4,
+    types_filter = params$types_filter,
+    publication_year_from = params$publication_date$from,
+    publication_year_to = params$publication_date$to,
+    st_AND = st$spcc
   ) |>
-    do.call(what = cbind) |>
-    t() |>
-    as.data.frame() |>
-    dplyr::select(count)
-  rownames(result) <- names(queries)
-  saveRDS(result, file = fn)
+    saveRDS(file = fn)
 }
 ```
 
@@ -1184,79 +969,77 @@ if (!file.exists(fn)) {
 ## Chapter 5
 
 ```{r}
-#| label: get_st_hits_chapter_5
+#| label: get_st_hits_chapter_5_L2
 
 fn <- file.path(params$chapter_5, "st_hits.rds")
 if (!file.exists(fn)) {
-  spcc <- paste0(
-    "(",
-    stcompact(params$search_terms$spc_corpus$spc),
-    ") AND (",
-    stcompact(params$search_terms$spc_corpus$nature),
-    ")"
+  # queries <- lapply(
+  #   params$search_terms$chapter_5,
+  #   function(section) {
+  #     lapply(
+  #       section,
+  #       function(s) {
+  #         openalexPro::pro_query(
+  #           title_and_abstract.search = paste0(
+  #             "(",
+  #             st$spcc,
+  #             ") AND (",
+  #             st_compact(s),
+  #             ")"
+  #           ),
+  #           type = params$types_filter,
+  #           from_publication_date = params$publication_date$from,
+  #           to_publication_date = params$publication_date$to
+  #         )
+  #       }
+  #     )
+  #   }
+  # )
+
+  # result <- lapply(
+  #   names(queries),
+  #   function(sect_nm) {
+  #     result <- lapply(
+  #       names(queries[[sect_nm]]),
+  #       function(nm) {
+  #         message("Retrieving ", sect_nm, " - ", nm, " ...")
+  #         result <- c(
+  #           count = NA_integer_,
+  #           db_response_time_ms = NA_integer_,
+  #           page = NA_integer_,
+  #           per_page = NA_integer_
+  #         )
+  #         try(
+  #           result <- queries[[sect_nm]][nm] |>
+  #             openalexR::oa_request(
+  #               count_only = TRUE,
+  #               verbose = TRUE
+  #             ) |>
+  #             unlist(),
+  #           silent = FALSE
+  #         )
+  #         return(result)
+  #       }
+  #     ) |>
+  #       do.call(what = cbind) |>
+  #       t() |>
+  #       as.data.frame() |>
+  #       dplyr::select(count)
+  #     browser()
+  #     rownames(result) <- names(queries[[sect_nm]])
+  #     return(result)
+  #   }
+  # )
+  # names(result) <- names(queries)
+
+  get_count_L2(
+    sets = params$search_terms$chapter_5,
+    types_filter = params$types_filter,
+    publication_year_from = params$publication_date$from,
+    publication_year_to = params$publication_date$to,
+    st_AND = st$spcc
   ) |>
-    stcompact()
-
-  queries <- lapply(
-    params$search_terms$chapter_5,
-    function(section) {
-      lapply(
-        section,
-        function(s) {
-          openalexPro::pro_query(
-            title_and_abstract.search = paste0(
-              "(",
-              spcc,
-              ") AND (",
-              stcompact(s),
-              ")"
-            ),
-            type = params$types_filter,
-            from_publication_date = params$publication_date$from,
-            to_publication_date = params$publication_date$to
-          )
-        }
-      )
-    }
-  )
-
-  result <- lapply(
-    names(queries),
-    function(sect_nm) {
-      result <- lapply(
-        names(queries[[sect_nm]]),
-        function(nm) {
-          message("Retrieving ", sect_nm, " - ", nm, " ...")
-          result <- c(
-            count = NA_integer_,
-            db_response_time_ms = NA_integer_,
-            page = NA_integer_,
-            per_page = NA_integer_
-          )
-          try(
-            result <- queries[[sect_nm]][nm] |>
-              openalexR::oa_request(
-                count_only = TRUE,
-                verbose = TRUE
-              ) |>
-              unlist(),
-            silent = FALSE
-          )
-          return(result)
-        }
-      ) |>
-        do.call(what = cbind) |>
-        t() |>
-        as.data.frame() |>
-        dplyr::select(count)
-      browser()
-      rownames(result) <- names(queries[[sect_nm]])
-      return(result)
-    }
-  )
-  names(result) <- names(queries)
-
-  saveRDS(result, file = fn)
+    saveRDS(file = fn)
 }
 ```
 
@@ -1266,50 +1049,16 @@ if (!file.exists(fn)) {
 
 ```{r}
 #| label: get_st_hits_chapter_6
-#| eval: true
 
 fn <- file.path(params$chapter_6, "st_hits.rds")
 if (!file.exists(fn)) {
-  spcc <- paste0(
-    "(",
-    stcompact(params$search_terms$spc_corpus$spc),
-    ") AND (",
-    stcompact(params$search_terms$spc_corpus$nature),
-    ")"
-  )
-  queries <- lapply(
-    params$search_terms$chapter_6,
-    function(s) {
-      openalexPro::pro_query(
-        title_and_abstract.search = paste0(
-          "(",
-          spcc,
-          ") AND (",
-          stcompact(s),
-          ")"
-        ),
-        type = params$types_filter,
-        from_publication_date = params$publication_date$from,
-        to_publication_date = params$publication_date$to
-      )
-    }
-  )
-
-  pbapply::pblapply(
-    queries,
-    function(query) {
-      query |>
-        openalexR::oa_request(
-          count_only = TRUE,
-          verbose = TRUE
-        ) |>
-        unlist()
-    }
+  get_count_L1(
+    sets = params$search_terms$chapter_6,
+    types_filter = params$types_filter,
+    publication_year_from = params$publication_date$from,
+    publication_year_to = params$publication_date$to,
+    st_AND = st$spcc
   ) |>
-    do.call(what = cbind) |>
-    t() |>
-    as.data.frame() |>
-    dplyr::select(count) |>
     saveRDS(file = fn)
 }
 ```
@@ -1579,11 +1328,11 @@ render_mermaid(
   c(
     C1_1 = format_count(ch1_counts[["Set 1"]]),
     C1_2 = format_count(ch1_counts[["Set 2"]]),
-    C1_3 = format_count(ch1_counts[["Set 3"]]),
-    C1_4 = format_count(ch1_counts[["Set 4"]]),
-    C1_5 = format_count(ch1_counts[["Set 5"]]),
-    C1_6 = format_count(ch1_counts[["Set 6"]]),
-    C1_7 = format_count(ch1_counts[["Set 7"]])
+    C1_3 = format_count(ch1_counts[["Set 3"]])
+    # C1_4 = format_count(ch1_counts[["Set 4"]]),
+    # C1_5 = format_count(ch1_counts[["Set 5"]]),
+    # C1_6 = format_count(ch1_counts[["Set 6"]]),
+    # C1_7 = format_count(ch1_counts[["Set 7"]])
   )
 )
 ```
@@ -1595,9 +1344,12 @@ render_mermaid(
 
 ch2_hits <- readRDS(file.path(params$chapter_2, "st_hits.rds"))
 
-ch2_counts <- lapply(ch2_hits, function(df) {
-  setNames(df$count, rownames(df))
-})
+ch2_counts <- lapply(
+  ch2_hits,
+  function(df) {
+    setNames(df$count, rownames(df))
+  }
+)
 
 do.call(
   rbind,
