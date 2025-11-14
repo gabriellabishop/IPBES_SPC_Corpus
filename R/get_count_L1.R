@@ -37,26 +37,15 @@ get_count_L1 <- function(
     names(queries),
     function(nm) {
       message("Retrieving ", nm, " ...")
-      result <- c(
-        count = NA_integer_,
-        db_response_time_ms = NA_integer_,
-        page = NA_integer_,
-        per_page = NA_integer_
-      )
-      try(
-        result <- queries[[nm]] |>
-          openalexR::oa_request(
-            count_only = TRUE,
-            verbose = TRUE
-          ) |>
-          unlist()
-      )
+      result <- queries[[nm]] |>
+        openalexPro::pro_request(
+          count_only = TRUE,
+          verbose = TRUE
+        )
       return(result)
     }
   ) |>
-    do.call(what = cbind) |>
-    t() |>
-    as.data.frame() |>
+    dplyr::bind_rows() |>
     dplyr::select(count)
   rownames(result) <- names(queries)
 

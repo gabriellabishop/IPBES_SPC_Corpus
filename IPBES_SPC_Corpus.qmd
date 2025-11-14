@@ -694,22 +694,20 @@ if (!file.exists(fn)) {
     to_publication_date = params$publication_date$to,
   )
 
-  pbapply::pblapply(
+  results <- pbapply::pblapply(
     queries,
     function(query) {
       query |>
-        openalexR::oa_request(
+        openalexPro::pro_request(
           count_only = TRUE,
           verbose = TRUE
-        ) |>
-        unlist()
+        )
     }
   ) |>
-    do.call(what = cbind) |>
-    t() |>
-    as.data.frame() |>
-    dplyr::select(count) |>
-    saveRDS(file = fn)
+    dplyr::bind_rows() |>
+    dplyr::select(count)
+  rownames(results) <- names(queries)
+  saveRDS(results, file = fn)
 }
 ```
 

@@ -35,27 +35,15 @@ get_count_L2 <- function(
         names(queries[[sect_nm]]),
         function(nm) {
           message("Retrieving ", sect_nm, " - ", nm, " ...")
-          result <- c(
-            count = NA_integer_,
-            db_response_time_ms = NA_integer_,
-            page = NA_integer_,
-            per_page = NA_integer_
-          )
-          try(
-            result <- queries[[sect_nm]][nm] |>
-              openalexR::oa_request(
-                count_only = TRUE,
-                verbose = TRUE
-              ) |>
-              unlist(),
-            silent = FALSE
-          )
+          result <- queries[[sect_nm]][nm] |>
+            openalexPro::pro_request(
+              count_only = TRUE,
+              verbose = TRUE
+            )
           return(result)
         }
       ) |>
-        do.call(what = cbind) |>
-        t() |>
-        as.data.frame() |>
+        dplyr::bind_rows() |>
         dplyr::select(count)
       rownames(result) <- names(queries[[sect_nm]])
       return(result)

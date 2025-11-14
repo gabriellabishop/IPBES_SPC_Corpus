@@ -11,8 +11,7 @@
 #' @return A data frame with the search term and the corresponding count.
 #'
 #' @importFrom pbmcapply pbmclapply
-#' @importFrom openalexR oa_fetch
-#'
+#' @importFrom NEEDS TO BE ADDED
 #' @md
 #'
 #' @examples
@@ -56,24 +55,21 @@ assess_search_term <- function(
           searchterm <- paste0(searchterm, " AND ", and_term)
         }
         if (is.null(types)) {
-          count <- openalexR::oa_fetch(
-            title_and_abstract.search = searchterm,
-            output = "list",
-            count_only = TRUE,
-            api_key = openalexPro::oap_apikey(),
-            mailto = openalexPro::oap_mail(),
-            verbose = verbose
-          )$count
+          1
+          count <- (openalexPro::pro_query(
+            title_and_abstract.search = searchterm
+          ) |>
+            openalexPro::pro_request(
+              count_only = TRUE
+            ))$count
         } else {
-          count <- openalexR::oa_fetch(
+          count <- (openalexPro::pro_query(
             title_and_abstract.search = searchterm,
-            output = "list",
-            count_only = TRUE,
-            type = types,
-            api_key = openalexPro::oap_apikey(),
-            mailto = openalexPro::oap_mail(),
-            verbose = verbose
-          )$count
+            type = types
+          ) |>
+            openalexPro::pro_request(
+              count_only = TRUE
+            ))$count
         }
         return(count)
       }
