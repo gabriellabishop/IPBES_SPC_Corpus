@@ -2,41 +2,79 @@
 # chapter_3.yaml
 # v2 shortened
 
-Set 1:
-- '(((protected OR conserved) AND areas) OR "other effective area-based conservation measures" OR "indigenous and traditional territories") AND'
-- '((national AND ("Biodiversity Strategy" OR target)) OR downscaling) AND'
-- '("case study" OR "best practice" OR planning OR "spatial prioritization") AND'
-- '(regional OR national OR subnational OR mountain OR marine OR (Indigenous AND (land OR "protected areas")) OR transboundary)'
+"Set 1":
+ - '(((protected OR conserved OR Indigenous) AND areas) OR OECM OR "other effective area-based conservation measures" OR ITT OR "indigenous and traditional territories") AND'
+ - '(NBSAP OR target OR (National AND ("Biodiversity Strategy")))  AND' 
+ - '(regional OR national OR subnational OR marine OR interpretation OR interpret OR implement OR implementation OR adapt OR adaptation OR translate OR translation governance OR "decision-making" OR transboundary)'
 
-Set 2:
-- 'restoration AND'
-- '(inclusivity OR participation OR "co-management" OR "Indigenous knowledge" OR "traditional ecological knowledge" OR ILK OR "local knowledge" OR "community-based restoration" OR "stakeholder engagement" OR "social equity" OR justice OR "gender inclusion")'
+"Set 3":
+ - '(ecology OR ecological OR biodiversity OR habitat OR ecosystem) AND'
+ - '(restoration OR rewilding) AND'
+ - '(spatial AND (planning OR prioritization OR prioritisation))'
 
-Set 3:
-- '("restoration planning" OR "ecological restoration") AND'
-- '("ecosystem integrity" OR "ecological connectivity" OR corridors OR "migration pathways" OR "climate resilience" OR "participatory approaches")'
+"Set 3.1A":
+ - '(ecology OR ecological OR biodiversity OR habitat OR ecosystem) AND'
+ - '(restoration OR rewilding) AND'
+ - '(spatial AND (planning OR prioritization OR prioritisation)) AND'
+ - '(goal OR objective)'
 
-Set 4:
-- '("spatial conservation planning" OR "landscape conservation planning" OR "conservation gap analysis" OR "systematic conservation planning" OR "ecoregion conservation" OR "transboundary conservation planning")'
+"Set 3.1BCD":
+ - '(ecology OR ecological OR biodiversity OR habitat OR ecosystem) AND'
+ - '(restoration OR rewilding) AND'
+ - '(spatial AND (planning OR prioritization OR prioritisation)) AND'
+ - '(concept OR principle)'
 
-Set 5:
-- '("protected area planning" OR "protected area connectivity planning" OR "conservation priority areas" OR "marine protected area planning")'
+"Set 3.2CE":
+ - '(ecology OR ecological OR biodiversity OR habitat OR ecosystem) AND'
+ - '(restoration OR rewilding) AND'
+ - '(spatial AND (planning OR prioritization OR prioritisation)) AND'
+ - '("multi-criteria" OR "multi-objective" OR multicriteria OR (multiple AND (criteria OR objective OR goal)))'
 
-Set 6:
-- '("landscape connectivity and conservation" OR "species connectivity" OR "planning conservation network" OR "ecological connectivity planning" OR "conservation corridor planning" OR "network conservation planning" OR "marine conservation planning" OR "seascape conservation planning" OR "wetland conservation planning")'
+"Set 3.2D":
+ - '(ecology OR ecological OR biodiversity OR habitat OR ecosystem) AND'
+ - '(restoration OR rewilding) AND'
+ - '(spatial AND (planning OR prioritization OR prioritisation)) AND'
+ - '(method OR tool OR approach OR software)'
 
-Set 7:
-- '("conservation planning" AND "ecosystem services")'
+"Set 3.2F":
+ - '(ecology OR ecological OR biodiversity OR habitat OR ecosystem) AND'
+ - '(restoration OR rewilding) AND'
+ - '(spatial AND (planning OR prioritization OR prioritisation)) AND'
+ - '(inclusivity OR participation OR "co-management" OR "Indigenous knowledge" OR "traditional ecological knowledge" OR ILK OR "local knowledge" OR "community-based restoration" OR "stakeholder engagement" OR "social equity" OR justice)'
 
-Set 8:
-- '("participatory conservation mapping" OR "community conservation mapping" OR "participatory spatial planning")'
+"Set 3.3":
+ - '(ecology OR ecological OR biodiversity OR habitat OR ecosystem) AND'
+ - '(restoration OR rewilding) AND'
+ - '(indicator OR index OR metric OR objective)'
 
-Set 9:
-- '("conservation effectiveness" OR "protected area management effectiveness") AND'
-- '"spatial planning"'
+"Set 4":
+ - '(conservation OR biodiversity OR "protected area" OR OECM OR reserve) AND'
+ - 'spatial AND'
+ - '(planning OR prioritization OR prioritisation)'
 
-Set 10:
-- '"adaptive management" AND'
-- '("global change" OR "climate change" OR "land use change" OR "sea use change" OR "invasive species" OR overexploitation OR pollution) AND'
-- '"spatial planning"'
+"Set 4.1AB":
+ - '(conservation OR biodiversity OR "protected area" OR OECM OR reserve) AND'
+ - 'spatial AND'
+ - '(planning OR prioritization OR prioritisation) AND'
+ - '(concept OR principle)'
 
+"Set 4.1CD":
+ - '(conservation OR biodiversity OR "protected area" OR OECM OR reserve) AND'
+ - 'spatial AND'
+ - '(planning OR prioritization OR prioritisation) AND'
+ - '(method OR tool OR approach OR software)'
+
+"Set 4.2":
+ - '(conservation OR biodiversity OR "protected area" OR OECM or reserve) AND'
+ - '(indicator OR index OR metric OR objective)'
+
+"Set 5.1":
+ - '(conservation OR biodiversity OR "protected area" OR OECM OR reserve) AND'
+ - 'restoration AND'
+ - 'spatial AND'
+ - '(planning OR prioritization OR prioritisation)'
+
+"Set 5.2":
+ - '("adaptive management" OR "adaptive co-management" OR "adaptive comanagement" OR "learning-based management" OR "iterative management") AND'
+ - '("protected area" OR park OR reserve OR "conservation area" OR "biodiversity conservation" OR "ecological restoration" OR "habitat restoration" OR "ecosystem restoration") AND'
+ - '(planning OR implementation)'
