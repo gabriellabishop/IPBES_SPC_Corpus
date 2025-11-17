@@ -1454,15 +1454,18 @@ render_mermaid(
   file.path("figures", "chapter3.mmd"),
   c(
     C3_1 = format_count(ch3_counts[["Set 1"]]),
-    C3_2 = format_count(ch3_counts[["Set 2"]]),
     C3_3 = format_count(ch3_counts[["Set 3"]]),
+    C3_3.1A = format_count(ch3_counts[["Set 3.1A"]]),
+    C3_3.1BCD = format_count(ch3_counts[["Set 3.1BCD"]]),
+    C3_3.2D = format_count(ch3_counts[["Set 3.2D"]]),
+    C3_3.2F = format_count(ch3_counts[["Set 3.2F"]]),
+    C3_3.3 = format_count(ch3_counts[["Set 3.3"]]),
     C3_4 = format_count(ch3_counts[["Set 4"]]),
-    C3_5 = format_count(ch3_counts[["Set 5"]]),
-    C3_6 = format_count(ch3_counts[["Set 6"]]),
-    C3_7 = format_count(ch3_counts[["Set 7"]]),
-    C3_8 = format_count(ch3_counts[["Set 8"]]),
-    C3_9 = format_count(ch3_counts[["Set 9"]]),
-    C3_10 = format_count(ch3_counts[["Set 10"]])
+    C3_4.1AB = format_count(ch3_counts[["Set 4.1AB"]]),
+    C3_4.1CD = format_count(ch3_counts[["Set 4.1CD"]]),
+    C3_4.2 = format_count(ch3_counts[["Set 4.2"]]),
+    C3_5.1 = format_count(ch3_counts[["Set 5.1"]]),
+    C3_5.2 = format_count(ch3_counts[["Set 5.2"]])
   )
 )
 ```
